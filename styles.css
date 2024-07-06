@@ -1,0 +1,69 @@
+body {
+    font-family: 'Inconsolata', monospace;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* White background */
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Full height */
+}
+
+aside {
+    width: 20%; /* Sidebar takes 20% of the screen width */
+    background-color: #ffffff;
+    padding: 1em;
+    border-right: 2px double; #ccc; /* Add a border to the sidebar */
+}
+
+aside pre {
+    margin: 0 0 1em 0; /* Margin below the ASCII art */
+    font-family: monospace; /* Monospace font for ASCII art */
+}
+
+aside p {
+    margin: 0 0 1em 0; /* Margin below the paragraph */
+}
+
+.sidebar-title {
+    text-decoration: underline;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    cursor: pointer; /* Add cursor pointer */
+}
+
+main {
+    width: 80%; /* Main content takes 80% of the screen width */
+    background-color: #ffffff; /* White background */
+    margin: 0;
+    padding: 0;
+}
+
+.main-text {
+    font-family: 'Inconsolata', monospace;
+    font-size: 13px;
+    color: #333;
+    margin: 0;
+    padding: 1em;
+}
+
+.main-parapgraph {
+    font-family: 'Inconsolata', monospace;
+    font-size: 13px;
+    color: #333;
+    margin: 0;
+    padding: 1em;
+}
+
+
+
+
+
