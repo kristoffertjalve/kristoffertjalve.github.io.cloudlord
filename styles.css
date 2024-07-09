@@ -63,6 +63,22 @@ main {
     padding: 1em;
 }
 
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    aside {
+        width: 100%; /* Sidebar takes 100% of the screen width */
+        border-right: none; /* Remove right border */
+        border-bottom: 1px solid #ccc; /* Add bottom border */
+    }
+
+    main {
+        display: none; /* Hide the main content */
+    }
+}
 
 
 
