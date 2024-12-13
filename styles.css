@@ -49,6 +49,12 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .left-panel ul li {
+        cursor: pointer; /* Add a pointer cursor for mobile links */
+    }
+}
+
 /* Default styles (desktop) */
 p {
     max-width: none; /* No restriction on line length by default */
