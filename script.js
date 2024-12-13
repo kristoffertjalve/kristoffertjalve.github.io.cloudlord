@@ -75,17 +75,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 container.appendChild(message);
 
-                // Add creation date
                 const createdDate = new Date(block.created_at);
                 const formattedDate = `Posted on ${String(createdDate.getDate()).padStart(2, '0')}/${String(createdDate.getMonth() + 1).padStart(2, '0')}/${createdDate.getFullYear()}`;
 
-                const timestamp = document.createElement('a');
-                timestamp.href = block.generated_url || '#';
-                timestamp.target = '_blank';
-                timestamp.classList.add('timestamp');
-                timestamp.textContent = formattedDate;
+                // Fallback to construct block URL if generated_url is missing
+                const ARENA_BLOCK_BASE_URL = 'https://www.are.na/block/';
+                const blockUrl = block.generated_url || `${ARENA_BLOCK_BASE_URL}${block.id}`;
 
+                const timestamp = document.createElement('a');
+                if (blockUrl) {
+                   timestamp.href = blockUrl; // Set the Are.na block link
+                   timestamp.target = '_blank'; // Open in a new tab
+                   timestamp.textContent = formattedDate;
+                   timestamp.classList.add('timestamp');
+                } else {
+               console.warn('No link available for block:', block); // Debug missing links
+                  timestamp.textContent = `${formattedDate} (No link available)`; // Fallback text
+                  timestamp.style.color = '#888'; // Optional: Dim the text to indicate no link
+                }
                 container.appendChild(timestamp);
+
 
                 // Prepend container to show newest messages on top
                 messageBoard.prepend(container);
