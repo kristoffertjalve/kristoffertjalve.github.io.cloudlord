@@ -8,14 +8,24 @@ body {
 
 .container {
     display: flex;
-    height: 100vh; /* Full height */
+    height: 100vh;
+    gap: 2px;
 }
 
-aside {
-    width: 20%; /* Sidebar takes 20% of the screen width */
+.left-panel {
+    width: 20%;
     background-color: #ffffff;
     padding: 1em;
-    border-right: 2px double; #ccc; /* Add a border to the sidebar */
+    border-right: 2px double #ccc;
+}
+
+.right-panel {
+    width: 20%;
+    background-color: #ffffff; /* White background */
+    padding: 1em;
+    border-left: 2px double #ccc;
+    overflow-y: auto; /* Allow scrolling for long content */
+    font-family: 'Inconsolata', monospace; /* Match the font for the rest of the website */
 }
 
 aside pre {
@@ -63,22 +73,44 @@ main {
     padding: 1em;
 }
 
-/* Media query for mobile devices */
-@media (max-width: 600px) {
-    .container {
-        flex-direction: column; /* Stack elements vertically */
-    }
-
-    aside {
-        width: 100%; /* Sidebar takes 100% of the screen width */
-        border-right: none; /* Remove right border */
-    }
-
-    main {
-        display: none; /* Hide the main content */
-    }
+#message-board {
+    font-family: 'Inconsolata', monospace;
+    font-size: 13px;
+    color: #333;
+    margin-top: 2em;
 }
 
+#message-board div {
+    margin-bottom: 0.5em;
+    margin-top: 2em;
+}
+.message {
+    padding: 0em;
+    background-color: #ffffff; /* Ensure a distinct background */
+    margin-bottom: 3em;
+}
 
+.message h3 {
+    margin: 0 0 0.5em 0; /* Space below the title */
+    font-size: 13px; /* Match font size with content */
+    font-weight: normal; /* Keep the title bold for distinction */
+    text-decoration: underline;
+}
 
+.message p {
+    font-size: 13px;
+    margin: 0; /* Ensure no additional margin for paragraphs */
+}
 
+.message-container .timestamp {
+    font-size: 11px;
+    color: #888;
+    text-align: left;
+    display: block;
+    text-decoration: none;
+}
+
+.message-container .timestamp:hover {
+    text-decoration: underline;
+    color: #555; /* Slight hover effect */
+}
