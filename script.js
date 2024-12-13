@@ -1,10 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Existing sidebar functionality
     const listItems = document.querySelectorAll('aside.left-panel ul li');
     const mainSection = document.querySelector('main');
+    const messageBoard = document.getElementById('message-board');
+    const ARENA_CHANNEL = 'telegrams-bhyik8dsunw';
+    const ARENA_API_URL = `https://api.are.na/v2/channels/${ARENA_CHANNEL}/contents`;
 
+    // Function to determine if the screen is mobile-sized
+    const isMobile = () => window.innerWidth <= 768;
+
+    // Add click event listeners for list items
     listItems.forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (event) => {
+            if (isMobile()) {
+                console.log('Mobile mode: Opening external link');
+                const link = item.getAttribute('data-link');
+                if (link) {
+                    window.open(link, '_blank'); // Open the link in a new tab
+                    return; // Exit function after opening the link
+                }
+            }
+
+            // Desktop functionality
+            console.log('Desktop mode: Displaying content in main section');
             const color = item.getAttribute('data-color');
             const text = item.getAttribute('data-text');
             const link = item.getAttribute('data-link');
@@ -15,48 +32,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Fetch data for the right panel (message board)
-    const messageBoard = document.getElementById('message-board');
-    const ARENA_CHANNEL = 'telegrams-bhyik8dsunw';
-    const ARENA_API_URL = `https://api.are.na/v2/channels/${ARENA_CHANNEL}/contents`;
-
+    // Load Are.na messages for the right panel
     fetch(ARENA_API_URL)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`API Error: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
-            // Reverse chronological order
+            console.log('Are.na API Response:', data); // Debug API response
+
+            if (!data.contents || data.contents.length === 0) {
+                messageBoard.innerHTML = '<p>No messages available.</p>';
+                return;
+            }
+
+            // Display messages in reverse chronological order
             data.contents.forEach(block => {
-                // Create the container for the message and timestamp
                 const container = document.createElement('div');
                 container.classList.add('message-container');
 
-                // Add message box
+                // Message box
                 const message = document.createElement('div');
                 message.classList.add('message');
 
-                // Add title inside the box
+                // Add title
                 const title = document.createElement('h3');
                 title.textContent = block.title || 'Untitled';
                 message.appendChild(title);
 
-                // Add content inside the box
+                // Add content with markdown support
                 const content = document.createElement('p');
                 try {
                     const contentText = block.content || 'No content';
-                    const isMarkdown = /\[(.*?)\]\((.*?)\)/.test(contentText); // Detect basic markdown
-                    content.innerHTML = isMarkdown ? marked.parse(contentText) : contentText;
+                    content.innerHTML = marked.parse(contentText);
                 } catch (err) {
-                    console.warn('Error parsing markdown for block:', block, err);
-                    content.innerHTML = block.content || '<em>No content</em>';
+                    console.warn('Error parsing markdown:', block, err);
+                    content.textContent = block.content || 'No content';
                 }
                 message.appendChild(content);
 
                 container.appendChild(message);
 
-                // Format creation date
+                // Add creation date
                 const createdDate = new Date(block.created_at);
                 const formattedDate = `Posted on ${String(createdDate.getDate()).padStart(2, '0')}/${String(createdDate.getMonth() + 1).padStart(2, '0')}/${createdDate.getFullYear()}`;
 
-                // Add timestamp as a link
                 const timestamp = document.createElement('a');
                 timestamp.href = block.generated_url || '#';
                 timestamp.target = '_blank';
@@ -65,12 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 container.appendChild(timestamp);
 
-                // Prepend the container to show the newest messages on top
+                // Prepend container to show newest messages on top
                 messageBoard.prepend(container);
             });
         })
         .catch(error => {
-            console.error('Error fetching Are.na data:', error);
+            console.error('Error fetching Are.na messages:', error);
             messageBoard.innerHTML = '<p>Failed to load messages.</p>';
         });
+
+    // Debug: Recheck screen size dynamically
+    window.addEventListener('resize', () => {
+        console.log('Screen resized. Current mode:', isMobile() ? 'Mobile' : 'Desktop');
+    });
 });
