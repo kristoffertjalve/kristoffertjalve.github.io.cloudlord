@@ -28,6 +28,41 @@ body {
     font-family: 'Inconsolata', monospace; /* Match the font for the rest of the website */
 }
 
+/* Mobile styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack elements vertically if needed */
+    }
+
+    .left-panel {
+        width: 100%; /* Take full width on mobile */
+        border: none; /* Remove borders for cleaner design */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    main, .right-panel {
+        display: none; /* Hide main content and right panel */
+    }
+}
+
+/* Default styles (desktop) */
+p {
+    max-width: none; /* No restriction on line length by default */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    p {
+        max-width: 35ch; /* Limit to ~40 characters per line */
+        margin: 0 auto; /* Center-align text block */
+        text-align: center; /* Ensure text alignment remains natural */
+    }
+}
+
 aside pre {
     margin: 0 0 1em 0; /* Margin below the ASCII art */
     font-family: monospace; /* Monospace font for ASCII art */
