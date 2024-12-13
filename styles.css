@@ -51,7 +51,7 @@ aside ul li {
 }
 
 main {
-    width: 80%; /* Main content takes 80% of the screen width */
+    width: 60%; /* Main content takes 60% of the screen width */
     background-color: #ffffff; /* White background */
     margin: 0;
     padding: 0;
