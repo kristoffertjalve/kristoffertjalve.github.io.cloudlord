@@ -57,9 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const message = document.createElement('div');
                 message.classList.add('message');
 
-                // Add title
+             // Add title as an active hyperlink
                 const title = document.createElement('h3');
+                const ARENA_BLOCK_BASE_URL = 'https://www.are.na/block/';
+                const blockUrl = block.generated_url || `${ARENA_BLOCK_BASE_URL}${block.id}`;
+                title.href = blockUrl; // Link to the Are.na block
+                title.target = '_blank'; // Open in a new tab
                 title.textContent = block.title || 'Untitled';
+                title.classList.add('message-title'); // Add a class for styling
                 message.appendChild(title);
 
                 // Add content with markdown support
@@ -75,25 +80,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 container.appendChild(message);
 
+                // Add creation date and comment count as a clickable link
                 const createdDate = new Date(block.created_at);
                 const formattedDate = `Posted on ${String(createdDate.getDate()).padStart(2, '0')}/${String(createdDate.getMonth() + 1).padStart(2, '0')}/${createdDate.getFullYear()}`;
+                const commentCount = block.comment_count || 0;
 
-                // Fallback to construct block URL if generated_url is missing
-                const ARENA_BLOCK_BASE_URL = 'https://www.are.na/block/';
-                const blockUrl = block.generated_url || `${ARENA_BLOCK_BASE_URL}${block.id}`;
+                const timestampLink = document.createElement('a');
+                timestampLink.href = blockUrl;
+                timestampLink.target = '_blank';
+                timestampLink.classList.add('timestamp');
+                timestampLink.textContent = commentCount > 0 
+                    ? `${formattedDate} (${commentCount})` 
+                    : formattedDate;
 
-                const timestamp = document.createElement('a');
-                if (blockUrl) {
-                   timestamp.href = blockUrl; // Set the Are.na block link
-                   timestamp.target = '_blank'; // Open in a new tab
-                   timestamp.textContent = formattedDate;
-                   timestamp.classList.add('timestamp');
-                } else {
-               console.warn('No link available for block:', block); // Debug missing links
-                  timestamp.textContent = `${formattedDate} (No link available)`; // Fallback text
-                  timestamp.style.color = '#888'; // Optional: Dim the text to indicate no link
-                }
-                container.appendChild(timestamp);
+                container.appendChild(timestampLink);
 
 
                 // Prepend container to show newest messages on top
