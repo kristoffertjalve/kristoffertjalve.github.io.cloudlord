@@ -1,9 +1,30 @@
+
+/* Default Light Mode (CSS Variables) */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333;
+    --sidebar-bg: #ffffff;
+    --border-color: #ccc;
+    --link-color: #007bff;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    --bg-color: #20B026;
+    --text-color: #f0f0f0;
+    --sidebar-bg: #20B026;
+    --border-color: #555;
+    --link-color: #f0f0f0;
+}
+
+
 body {
     font-family: 'Inconsolata', monospace;
     font-size: 13px;
     margin: 0;
     padding: 0;
-    background-color: #ffffff; /* White background */
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .container {
@@ -14,14 +35,16 @@ body {
 
 .left-panel {
     width: 20%;
-    background-color: #ffffff;
+    background-color: var(--sidebar-bg);
+    border-color: var(--border-color);
     padding: 1em;
     border-right: 2px double #ccc;
 }
 
 .right-panel {
     width: 20%;
-    background-color: #ffffff; /* White background */
+    background-color: var(--sidebar-bg);
+    border-color: var(--border-color);
     padding: 1em;
     border-left: 2px double #ccc;
     overflow-y: auto; /* Allow scrolling for long content */
@@ -73,6 +96,14 @@ p {
     }
 }
 
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 aside pre {
     margin: 0 0 1em 0; /* Margin below the ASCII art */
     font-family: monospace; /* Monospace font for ASCII art */
@@ -103,8 +134,9 @@ aside ul li {
 }
 
 main {
-    width: 60%; /* Main content takes 60% of the screen width */
-    background-color: #ffffff; /* White background */
+    width: 60%;
+    background-color: var(--bg-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
     margin: 0;
     padding: 0;
 }
@@ -112,9 +144,17 @@ main {
 .main-text {
     font-family: 'Inconsolata', monospace;
     font-size: 13px;
-    color: #333;
+    color: var(--text-color); /* Fix: Use CSS variable */
     margin: 0;
     padding: 1em;
+}
+
+.main-text a {
+    text-decoration: underline;
+}
+
+.main-text a:hover {
+    text-decoration: none;
 }
 
 .main-parapgraph {
@@ -128,7 +168,7 @@ main {
 #message-board {
     font-family: 'Inconsolata', monospace;
     font-size: 13px;
-    color: #333;
+    color: var(--text-color); /* Use variable */
 }
 
 #message-board div {
@@ -136,19 +176,19 @@ main {
     margin-top: 1em;
 }
 .message {
+    background-color: var(--bg-color); /* Use dark mode background */
+    color: var(--text-color); /* Use dark mode text */
     padding: 0em;
-    background-color: #ffffff; /* Ensure a distinct background */
-    color: #000;
     margin-bottom: 3em;
 }
 
 .message-title {
-    font-size: 13px; /* Adjust font size as needed */
+    font-size: 13px;
     font-weight: normal;
-    color: #000; /* Make it look like a link */
+    color: var(--text-color); /* Use variable */
     text-decoration: none;
-    margin-bottom: 0.5em; /* Add spacing below the title */
-    display: inline-block; /* Ensure spacing applies properly */
+    margin-bottom: 0.5em;
+    display: inline-block;
 }
 
 .message p {
@@ -158,13 +198,30 @@ main {
 
 .message-container .timestamp {
     font-size: 11px;
-    color: #888;
+    color: var(--text-color); /* Use dark mode text */
     text-align: left;
     display: block;
     text-decoration: none;
 }
 
 .timestamp:hover {
-    color: #555;
+    color: var(--link-color);
     text-decoration: underline;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    outline:none;
+
+}
+
+.dark-mode-toggle:hover {
+    background: none;
 }
