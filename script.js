@@ -4,33 +4,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageBoard = document.getElementById('message-board');
     const ARENA_CHANNEL = 'telegrams-bhyik8dsunw';
     const ARENA_API_URL = `https://api.are.na/v2/channels/${ARENA_CHANNEL}/contents`;
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
 
     // Function to determine if the screen is mobile-sized
     const isMobile = () => window.innerWidth <= 768;
 
-    // Add click event listeners for list items
+    // ✅ Fix: Ensure dark mode is applied when clicking a list item
     listItems.forEach(item => {
-        item.addEventListener('click', (event) => {
-            if (isMobile()) {
-                console.log('Mobile mode: Opening external link');
-                const link = item.getAttribute('data-link');
-                if (link) {
-                    window.open(link, '_blank'); // Open the link in a new tab
-                    return; // Exit function after opening the link
-                }
+        item.addEventListener('click', () => {
+            const isDarkMode = body.classList.contains('dark-mode'); // Check if dark mode is active
+            let color = item.getAttribute('data-color');
+
+            // If dark mode is active, override color
+            if (isDarkMode) {
+                color = 'var(--bg-color)'; // Ensure it stays in dark mode
             }
 
-            // Desktop functionality
-            console.log('Desktop mode: Displaying content in main section');
-            const color = item.getAttribute('data-color');
-            const text = item.getAttribute('data-text');
-            const link = item.getAttribute('data-link');
-            const linkText = item.getAttribute('data-link-text');
+            let text = item.getAttribute('data-text');
 
+            // Convert [text](URL) into clickable links
+            const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+            // Update main section
             mainSection.style.backgroundColor = color;
-            mainSection.innerHTML = `<p class="main-text">${text}<a href="${link}" target="_blank">${linkText}</a></p>`;
+            mainSection.style.color = 'var(--text-color)'; // Ensure text is visible in dark mode
+            mainSection.innerHTML = `<p class="main-text">${formattedText}</p>`;
         });
     });
+
+    // ✅ Dark Mode Toggle Fix
+    if (darkModeToggle) {
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️ ';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+                darkModeToggle.textContent = '☀️ ';
+                mainSection.style.backgroundColor = 'var(--bg-color)'; // Fix background on toggle
+                mainSection.style.color = 'var(--text-color)';
+            } else {
+                localStorage.setItem('dark-mode', 'disabled');
+                darkModeToggle.textContent = '🟢 ';
+                mainSection.style.backgroundColor = 'var(--bg-color)';
+                mainSection.style.color = 'var(--text-color)';
+            }
+        });
+    } else {
+        console.warn('Dark mode toggle button not found in the HTML.');
+    }
 
     // Load Are.na messages for the right panel
     fetch(ARENA_API_URL)
@@ -41,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            console.log('Are.na API Response:', data); // Debug API response
+            console.log('Are.na API Response:', data);
 
             if (!data.contents || data.contents.length === 0) {
                 messageBoard.innerHTML = '<p>No messages available.</p>';
@@ -57,14 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const message = document.createElement('div');
                 message.classList.add('message');
 
-             // Add title as an active hyperlink
+                // Add title as an active hyperlink
                 const title = document.createElement('h3');
                 const ARENA_BLOCK_BASE_URL = 'https://www.are.na/block/';
                 const blockUrl = block.generated_url || `${ARENA_BLOCK_BASE_URL}${block.id}`;
-                title.href = blockUrl; // Link to the Are.na block
-                title.target = '_blank'; // Open in a new tab
                 title.textContent = block.title || 'Untitled';
-                title.classList.add('message-title'); // Add a class for styling
+                title.classList.add('message-title');
                 message.appendChild(title);
 
                 // Add content with markdown support
@@ -94,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     : formattedDate;
 
                 container.appendChild(timestampLink);
-
 
                 // Prepend container to show newest messages on top
                 messageBoard.prepend(container);
