@@ -7,59 +7,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
 
-    // Function to determine if the screen is mobile-sized
+    // Function to check if the screen is mobile-sized
     const isMobile = () => window.innerWidth <= 768;
 
-    // ✅ Fix: Ensure dark mode is applied when clicking a list item
+    // ✅ Function to load content when clicking sidebar items
+    function loadContent(item) {
+        const isDarkMode = body.classList.contains('dark-mode');
+        let color = item.getAttribute('data-color');
+        if (isDarkMode) color = 'var(--bg-color)';
+
+        let text = item.getAttribute('data-text');
+        const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+        // Update main section
+        mainSection.style.backgroundColor = color;
+        mainSection.style.color = 'var(--text-color)';
+        mainSection.innerHTML = `<p class="main-text">${formattedText}</p>`;
+
+        // Get clean URL slug from the list item text
+        const slug = item.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        
+        // Update URL without reloading
+        history.pushState({ page: slug }, "", `/${slug}`);
+    }
+
+    // ✅ Handle sidebar item clicks
     listItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const isDarkMode = body.classList.contains('dark-mode'); // Check if dark mode is active
-            let color = item.getAttribute('data-color');
-
-            // If dark mode is active, override color
-            if (isDarkMode) {
-                color = 'var(--bg-color)'; // Ensure it stays in dark mode
+        item.addEventListener('click', (event) => {
+            if (isMobile()) {
+                const link = item.getAttribute('data-link');
+                if (link) {
+                    window.open(link, '_blank'); // Open in new tab on mobile
+                    return;
+                }
             }
-
-            let text = item.getAttribute('data-text');
-
-            // Convert [text](URL) into clickable links
-            const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-            // Update main section
-            mainSection.style.backgroundColor = color;
-            mainSection.style.color = 'var(--text-color)'; // Ensure text is visible in dark mode
-            mainSection.innerHTML = `<p class="main-text">${formattedText}</p>`;
+            loadContent(item);
         });
     });
+
+    // ✅ Handle back/forward navigation
+    window.addEventListener('popstate', (event) => {
+        if (event.state) {
+            const matchingItem = [...listItems].find(item => 
+                item.textContent.trim().toLowerCase().replace(/\s+/g, '-') === event.state.page
+            );
+            if (matchingItem) loadContent(matchingItem);
+        } else {
+            mainSection.innerHTML = ''; // Default to blank if no state
+        }
+    });
+
+    // ✅ Load content on page load if there's a URL path
+    const path = window.location.pathname.replace('/', '');
+    if (path) {
+        const matchingItem = [...listItems].find(item => 
+            item.textContent.trim().toLowerCase().replace(/\s+/g, '-') === path
+        );
+        if (matchingItem) loadContent(matchingItem);
+    }
 
     // ✅ Dark Mode Toggle Fix
     if (darkModeToggle) {
         if (localStorage.getItem('dark-mode') === 'enabled') {
             body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️ ';
+            darkModeToggle.textContent = '☀️';
         }
 
         darkModeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
 
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode', 'enabled');
-                darkModeToggle.textContent = '☀️ ';
-                mainSection.style.backgroundColor = 'var(--bg-color)'; // Fix background on toggle
-                mainSection.style.color = 'var(--text-color)';
-            } else {
-                localStorage.setItem('dark-mode', 'disabled');
-                darkModeToggle.textContent = '🟢 ';
-                mainSection.style.backgroundColor = 'var(--bg-color)';
-                mainSection.style.color = 'var(--text-color)';
-            }
+            localStorage.setItem('dark-mode', isDarkMode ? 'enabled' : 'disabled');
+            darkModeToggle.textContent = isDarkMode ? '☀️' : '🟢';
+            
+            // Fix main section colors
+            mainSection.style.backgroundColor = 'var(--bg-color)';
+            mainSection.style.color = 'var(--text-color)';
         });
     } else {
         console.warn('Dark mode toggle button not found in the HTML.');
     }
 
-    // Load Are.na messages for the right panel
+    // ✅ Load Are.na messages for the right panel
     fetch(ARENA_API_URL)
         .then(response => {
             if (!response.ok) {
