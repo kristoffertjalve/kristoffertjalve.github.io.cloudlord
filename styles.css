@@ -183,7 +183,7 @@ main {
 }
 
 .message-title {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: normal;
     color: var(--text-color); /* Use variable */
     text-decoration: none;
@@ -192,7 +192,7 @@ main {
 }
 
 .message p {
-    font-size: 13px;
+    font-size: 11px;
     margin: 0; /* Ensure no additional margin for paragraphs */
 }
 
