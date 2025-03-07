@@ -1,9 +1,9 @@
 
 /* Default Light Mode (CSS Variables) */
 :root {
-    --bg-color: #ffffff;
+    --bg-color: #EEEEEE;
     --text-color: #333;
-    --sidebar-bg: #ffffff;
+    --sidebar-bg: #EEEEEE;
     --border-color: #ccc;
     --link-color: #007bff;
 }
