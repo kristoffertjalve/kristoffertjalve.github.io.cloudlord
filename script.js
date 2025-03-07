@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
 
             // Update main section
-            mainSection.style.backgroundColor = color;
             mainSection.style.color = 'var(--text-color)'; // Ensure text is visible in dark mode
             mainSection.innerHTML = `<p class="main-text">${formattedText}</p>`;
         });
