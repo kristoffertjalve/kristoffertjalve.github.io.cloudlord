@@ -10,6 +10,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to determine if the screen is mobile-sized
     const isMobile = () => window.innerWidth <= 768;
 
+    // Create a mobile-friendly overlay
+    const overlay = document.createElement('div');
+    overlay.classList.add('content-overlay');
+    body.appendChild(overlay);
+
+    listItems.forEach(item => {
+        item.addEventListener('click', () => {
+            let text = item.getAttribute('data-text');
+
+            // Convert [text](URL) into clickable links
+            const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+            if (window.innerWidth <= 768) {
+                // Mobile: Show content in overlay
+                overlay.innerHTML = `<p class="main-text">${formattedText}</p><button onclick="document.querySelector('.content-overlay').classList.remove('active')">Close</button>`;
+                overlay.classList.add('active');
+            } else {
+                // Desktop: Keep using <main>
+                document.querySelector('main').innerHTML = `<p class="main-text">${formattedText}</p>`;
+            }
+        });
+    });
+
     // ✅ Fix: Ensure dark mode is applied when clicking a list item
     listItems.forEach(item => {
         item.addEventListener('click', () => {
