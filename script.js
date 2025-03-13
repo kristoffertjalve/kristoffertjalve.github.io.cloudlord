@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (window.innerWidth <= 768) {
                 // Mobile: Show content in overlay
-                overlay.innerHTML = `<p class="main-text">${formattedText}</p><button onclick="document.querySelector('.content-overlay').classList.remove('active')">Close</button>`;
+                overlay.innerHTML = `<button onclick="document.querySelector('.content-overlay').classList.remove('active')">Close</button><p class="main-text">${formattedText}</p>`;
                 overlay.classList.add('active');
             } else {
                 // Desktop: Keep using <main>
