@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainSection = document.querySelector('main');
     const messageBoard = document.getElementById('message-board');
     const ARENA_CHANNEL = 'telegrams-bhyik8dsunw';
-    const ARENA_API_URL = `https://api.are.na/v2/channels/${ARENA_CHANNEL}/contents`;
+    const ARENA_API_URL = `https://api.are.na/v2/channels/${ARENA_CHANNEL}/contents?per=100`;
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
 
