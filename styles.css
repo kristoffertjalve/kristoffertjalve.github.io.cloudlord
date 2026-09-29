@@ -243,3 +243,28 @@ main {
 .dark-mode-toggle:hover {
     background: none;
 }
+
+/* Fruitfly mouse cursor */
+#fruitfly-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 999999;
+    will-change: transform;
+}
+
+#fruitfly-cursor img {
+    display: block;
+    width: 32px;
+    height: 32px;
+}
+
+/* Hide on touch devices */
+@media (hover: none), (pointer: coarse) {
+    #fruitfly-cursor {
+        display: none;
+    }
+}
