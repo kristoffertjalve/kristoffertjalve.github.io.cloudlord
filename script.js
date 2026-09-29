@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Fruitfly cursor
+    const fruitfly = document.createElement('div');
+    fruitfly.id = 'fruitfly-cursor';
+
+    const fruitflyImage = document.createElement('img');
+    fruitflyImage.src = '/cursors/flying.gif';
+    fruitflyImage.alt = '';
+
+    fruitfly.appendChild(fruitflyImage);
+    document.body.appendChild(fruitfly);
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let flyX = mouseX;
+    let flyY = mouseY;
+
+    document.addEventListener('mousemove', (event) => {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    });
+
+    function animateFruitfly() {
+        flyX += (mouseX - flyX) * 0.18;
+        flyY += (mouseY - flyY) * 0.18;
+
+        fruitfly.style.transform =
+            `translate(${flyX - 16}px, ${flyY - 16}px)`;
+
+        requestAnimationFrame(animateFruitfly);
+    }
+
+    animateFruitfly();
+    
     const listItems = document.querySelectorAll('aside.left-panel ul li');
     const mainSection = document.querySelector('main');
     const messageBoard = document.getElementById('message-board');
