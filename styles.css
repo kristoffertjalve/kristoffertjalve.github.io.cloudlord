@@ -274,3 +274,6 @@ main {
 .left-panel li[data-estate][aria-current="page"] {text-decoration:underline}
 .left-panel li[data-estate]:focus-visible {outline:2px solid var(--text-color);outline-offset:2px}
 @media (max-width:768px) {body[data-estate-page] main {display:block;width:100%;box-sizing:border-box}body[data-estate-page] .content-overlay {display:none!important}}
+
+@media(max-width:768px){body[data-about-page] main{display:block;width:100%;box-sizing:border-box}body[data-about-page] .content-overlay{display:none!important}}
+.left-panel li[data-about][aria-current="page"]{text-decoration:underline}
