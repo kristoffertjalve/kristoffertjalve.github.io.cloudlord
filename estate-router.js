@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
   const estateLinks = [...document.querySelectorAll('li[data-estate]')];
+  const aboutLinks = [...document.querySelectorAll('li[data-about]')];
+  const aboutMap = new Map(aboutLinks.map(item => [item.dataset.about, item]));
   if (!main || !estateLinks.length) return;
   const homeHTML = '<p align="left"><iframe id="ChiaHouse" title="Chia House" src="https://las-pinas.com/h.html?i=kristoffer" style="width:50vw;min-height:600px;border:none;overflow:scroll" houseid="kristoffer"></iframe></p>';
   const estateMap = new Map(estateLinks.map(item => [item.dataset.estate, item]));
   const homeTitle = 'Cloudlord.management';
   const mobile = () => matchMedia('(max-width: 768px)').matches;
   function render(slug) {
-    const item = estateMap.get(slug);
+    const item = estateMap.get(slug) || aboutMap.get(slug);
     if (!item) {
       main.innerHTML = homeHTML;
       document.body.removeAttribute('data-estate-page');
+      document.body.removeAttribute('data-about-page');
       document.title = homeTitle;
     } else {
       const text = item.getAttribute('data-text') || '';
@@ -25,18 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
       heading.textContent = item.textContent.trim().replace(' 🆕', '');
       main.innerHTML = '<article class="main-text estate-page"><div>' + description + '</div></article>';
       main.querySelector('article').prepend(heading);
-      document.body.dataset.estatePage = slug;
+      if (aboutMap.has(slug)) {document.body.dataset.aboutPage = slug;document.body.removeAttribute('data-estate-page');} else {document.body.dataset.estatePage = slug;document.body.removeAttribute('data-about-page');}
       document.title = heading.textContent + ' — Cloudlord.management';
     }
-    estateLinks.forEach(link => {
-      if (link.dataset.estate === slug) link.setAttribute('aria-current', 'page');
+    [...estateLinks,...aboutLinks].forEach(link => {
+      if ((link.dataset.estate || link.dataset.about) === slug) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
   }
-  estateLinks.forEach(item => {
+  [...estateLinks,...aboutLinks].forEach(item => {
     const go = () => {
-      const slug = item.dataset.estate;
-      const path = '/estates/' + slug + '/';
+      const slug = item.dataset.estate || item.dataset.about;
+      const path = item.dataset.about ? '/' + slug + '/' : '/estates/' + slug + '/';
       if (location.pathname !== path) history.pushState({estate:slug}, '', path);
       render(slug);
       if (mobile()) main.scrollIntoView({behavior:'auto',block:'start'});
@@ -55,8 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   window.addEventListener('popstate', () => {
     const match = location.pathname.match(/^\/estates\/([^/]+)\/?$/);
-    render(match ? match[1] : null);
+    render(match ? match[1] : (aboutMap.has(location.pathname.split('/')[1]) ? location.pathname.split('/')[1] : null));
   });
   const match = location.pathname.match(/^\/estates\/([^/]+)\/?$/);
   if (match && estateMap.has(match[1])) render(match[1]);
+  else if (aboutMap.has(location.pathname.split('/')[1])) render(location.pathname.split('/')[1]);
 });
