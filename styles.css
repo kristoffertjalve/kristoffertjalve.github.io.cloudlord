@@ -268,3 +268,9 @@ main {
         display: none;
     }
 }
+
+/* Estate permalinks: retain existing design, make estate content visible on mobile. */
+.estate-page h1 {font-size:13px;font-weight:normal;margin:0 0 1em;text-decoration:underline}
+.left-panel li[data-estate][aria-current="page"] {text-decoration:underline}
+.left-panel li[data-estate]:focus-visible {outline:2px solid var(--text-color);outline-offset:2px}
+@media (max-width:768px) {body[data-estate-page] main {display:block;width:100%;box-sizing:border-box}body[data-estate-page] .content-overlay {display:none!important}}
