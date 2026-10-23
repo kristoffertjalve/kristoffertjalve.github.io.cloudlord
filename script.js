@@ -50,44 +50,76 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.classList.add('content-overlay');
     body.appendChild(overlay);
 
+    // One navigation handler for desktop and mobile.
+    // Keep the original domain descriptions and visual presentation.
+    let activeTrigger = null;
+    const closeOverlay = () => {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML = '';
+        if (activeTrigger) activeTrigger.focus();
+    };
+
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Project details');
+    overlay.setAttribute('aria-hidden', 'true');
+
+    function renderEntry(item) {
+        const text = item.getAttribute('data-text') || '';
+        const formattedText = text.replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        activeTrigger = item;
+
+        if (isMobile()) {
+            overlay.innerHTML = '';
+            const closeButton = document.createElement('button');
+            closeButton.type = 'button';
+            closeButton.textContent = 'Close';
+            closeButton.addEventListener('click', closeOverlay);
+            const description = document.createElement('div');
+            description.className = 'main-text';
+            description.innerHTML = formattedText;
+            overlay.append(closeButton, description);
+            overlay.classList.add('active');
+            overlay.setAttribute('aria-hidden', 'false');
+            closeButton.focus();
+        } else {
+            mainSection.innerHTML = `<div class="main-text">${formattedText}</div>`;
+            mainSection.style.color = 'var(--text-color)';
+        }
+    }
+
     listItems.forEach(item => {
-        item.addEventListener('click', () => {
-            let text = item.getAttribute('data-text');
-
-            // Convert [text](URL) into clickable links
-            const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-            if (window.innerWidth <= 768) {
-                // Mobile: Show content in overlay
-                overlay.innerHTML = `<button onclick="document.querySelector('.content-overlay').classList.remove('active')">Close</button><p class="main-text">${formattedText}</p>`;
-                overlay.classList.add('active');
-            } else {
-                // Desktop: Keep using <main>
-                document.querySelector('main').innerHTML = `<p class="main-text">${formattedText}</p>`;
+        item.setAttribute('role', 'button');
+        item.setAttribute('tabindex', '0');
+        item.addEventListener('click', () => renderEntry(item));
+        item.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                renderEntry(item);
             }
         });
     });
 
-    // ✅ Fix: Ensure dark mode is applied when clicking a list item
-    listItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const isDarkMode = body.classList.contains('dark-mode'); // Check if dark mode is active
-            let color = item.getAttribute('data-color');
-
-            // If dark mode is active, override color
-            if (isDarkMode) {
-                color = 'var(--bg-color)'; // Ensure it stays in dark mode
+    overlay.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            closeOverlay();
+        } else if (event.key === 'Tab') {
+            const focusables = [...overlay.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')];
+            if (!focusables.length) return;
+            const first = focusables[0], last = focusables[focusables.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
             }
+        }
+    });
 
-            let text = item.getAttribute('data-text');
-
-            // Convert [text](URL) into clickable links
-            const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-            // Update main section
-            mainSection.style.color = 'var(--text-color)'; // Ensure text is visible in dark mode
-            mainSection.innerHTML = `<p class="main-text">${formattedText}</p>`;
-        });
+    window.addEventListener('resize', () => {
+        if (!isMobile() && overlay.classList.contains('active')) closeOverlay();
     });
 
     // ✅ Dark Mode Toggle Fix
