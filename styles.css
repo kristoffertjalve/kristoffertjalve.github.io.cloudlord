@@ -277,3 +277,8 @@ main {
 
 @media(max-width:768px){body[data-about-page] main{display:block;width:100%;box-sizing:border-box}body[data-about-page] .content-overlay{display:none!important}}
 .left-panel li[data-about][aria-current="page"]{text-decoration:underline}
+
+/* Keep animated fly / webring visible while hiding the OS pointer. */
+@media (hover: hover) and (pointer: fine) {
+  html, body, body * { cursor: none !important; }
+}
