@@ -256,14 +256,23 @@ main {
 
 /* Estate permalinks: retain existing design, make estate content visible on mobile. */
 .estate-page h1 {font-size:13px;font-weight:normal;margin:0 0 1em;text-decoration:underline}
-.left-panel li[data-estate][aria-current="page"] {text-decoration:underline}
-.left-panel li[data-estate]:focus-visible {outline:2px solid var(--text-color);outline-offset:2px}
+.left-panel li[data-estate] a[aria-current="page"] {text-decoration:underline}
+.left-panel li[data-estate] a:focus-visible {outline:2px solid var(--text-color);outline-offset:2px}
 @media (max-width:768px) {body[data-estate-page] main {display:block;width:100%;box-sizing:border-box}}
 
 @media(max-width:768px){body[data-about-page] main{display:block;width:100%;box-sizing:border-box}}
-.left-panel li[data-about][aria-current="page"]{text-decoration:underline}
+.left-panel li[data-about] a[aria-current="page"]{text-decoration:underline}
 
 /* Keep animated fly / webring visible while hiding the OS pointer. */
 @media (hover: hover) and (pointer: fine) {
   html, body, body * { cursor: none !important; }
 }
+
+/* Semantic navigation links retain the original unadorned list appearance. */
+.left-panel li[data-estate] > a,
+.left-panel li[data-about] > a { color: inherit; text-decoration: none; }
+.left-panel li[data-estate] > a:hover,
+.left-panel li[data-about] > a:hover,
+.left-panel li[data-estate] > a[aria-current="page"],
+.left-panel li[data-about] > a[aria-current="page"] { text-decoration: underline; }
+.left-panel li[data-about] > a:focus-visible { outline: 2px solid var(--text-color); outline-offset: 2px; }
