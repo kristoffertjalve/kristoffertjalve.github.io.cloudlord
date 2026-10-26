@@ -1,0 +1,43 @@
+Learn more about Kristoffer’s work with the internet:
+
+
+
+
+
+                    2026 - Podcast - The New Movement - [Kristoffer Tjalve: Naive Weekly](https://thenewmvt.com/podcast/kristoffer-tjalve-naive-weekly/)
+
+                    2026 - Podcast - Web Weaving - [Episode 10](https://web-weaving.jamesg.blog/10)
+
+                    2025 - Feature - It's Nice That - [The creatives designing a more inspiring internet](https://www.itsnicethat.com/features/forward-thinking-open-your-laptop-digital-creative-industry-120126)
+
+                    2025 - Podcast - The Orthogonal Bet - [The Internet Phone Book](https://www.youtube.com/watch?v=vwqMSp1_Z70)
+
+                    2025 - Feature - It's Nice That - [The internet has the yellow pages (again)](https://www.itsnicethat.com/articles/tiny-awards-finalists-2025-graphic-design-project-110925)
+
+                    2025 - Interview - Lullaby Machine - [Practicing The Web](https://lullabymachine.com/essays/practicing-the-web)
+
+                    2025 - Interview - From The Superhighway - [The internet has the yellow pages (again)](https://fromthesuperhighway.com/issues/issue08/)
+
+                    2025 - Interview - Apossible - [Kristoffer Tjalve is an Organizer](https://apossible.com/interviews/kristoffer-tjalve-is-an-organizer)
+
+                    2025 - Interview - Are.na Editorial - [Paging the Poetic Web](https://www.are.na/editorial/paging-the-poetic-web)
+
+                    2025 - Feature - La Presse - [Tendance : Le Jardin Numérique](https://www.lapresse.ca/societe/chroniques/2025-02-23/culture-web/tendance-le-jardin-numerique.php)
+
+                    2025 - Podcast - Try New Things - [The Poetic Internet with Kristoffer Tjalve](https://poddtoppen.se/podcast/1782103302/how-to-try-new-things/the-poetic-internet-with-kristoffer-tjalve)
+
+                    2025 - Podcast - Inventory-ing - [Episode 4: Kristoffer Tjalve](https://creators.spotify.com/pod/show/inventory-ing/episodes/Episode-4-Kristoffer-Tjalve-e2t9dqg)
+
+                    2024 - Feature - It’s Nice That - [POV: How Creatively Nutritious is Your Internet Feed?](https://www.itsnicethat.com/articles/pov-how-creatively-nutritious-is-your-internet-feed-insights-digital-190824)
+
+                    2024 - Feature - Wired - [Naive and poetic. Websites That Will Change the Way You Look at the Internet](https://www.wired.cz/clanky/naivni-a-poeticke-webove-stranky-ktere-zmeni-vas-pohled-na-internet)
+
+                    2024 - Podcast - Lux Capital - [The Quest to Find the Poetic Web](https://www.luxcapital.com/content/the-orthogonal-bet-the-quest-to-find-the-poetic-web)
+
+                    2023 - Feature - Atlas - [Måske er Internettet Ikke Helt ad HTML til?](https://atlasmag.dk/kultur/kunst/m%C3%A5ske-er-internettet-ikke-helt-ad-html-til)
+
+
+
+
+
+                    Requests? press@cloudlord.management
