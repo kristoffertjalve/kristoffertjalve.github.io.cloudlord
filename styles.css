@@ -51,18 +51,21 @@ body {
     font-family: 'Inconsolata', monospace; /* Match the font for the rest of the website */
 }
 
-/* Mobile styles */
+/* Mobile: one scrollable page, navigation followed by selected content. */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; /* Stack elements vertically if needed */
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        gap: 0;
     }
-
     .left-panel {
-        width: 100%; /* Take full width on mobile */
-        border: none; /* Remove borders for cleaner design */
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
         display: flex;
         margin-top: 2em;
-        padding: 0em;
+        padding: 0;
         line-height: 1;
         font-size: 13px;
         flex-direction: column;
@@ -70,16 +73,25 @@ body {
         align-items: center;
         text-align: center;
     }
-
-    main, .right-panel {
-        display: none; /* Hide main content and right panel */
+    .left-panel ul li { cursor: pointer; }
+    main {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow-wrap: anywhere;
+    }
+    main iframe { max-width: 100%; }
+    .right-panel { display: none; }
+    .mobile-back-link {
+        display: inline-block;
+        margin-bottom: 1em;
+        color: var(--link-color);
+        text-decoration: underline;
     }
 }
-
-@media (max-width: 768px) {
-    .left-panel ul li {
-        cursor: pointer; /* Add a pointer cursor for mobile links */
-    }
+@media (min-width: 769px) {
+    .mobile-back-link { display: none; }
 }
 
 /* Default styles (desktop) */
