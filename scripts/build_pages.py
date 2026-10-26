@@ -62,7 +62,7 @@ def build():
         description = plain_description(data["estates" if kind == "estate" else "about"][slug]) if kind else HOME_DESCRIPTION
         if kind:
             value = data["estates" if kind == "estate" else "about"][slug]
-            main = '<main><article class="main-text estate-page"><h1>' + html.escape(heading) + '</h1><div>' + render_links(value) + '</div></article></main>'
+            main = '<main><article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><h1>' + html.escape(heading) + '</h1><div>' + render_links(value) + '</div></article></main>'
             body_attr = f' data-{"estate" if kind == "estate" else "about"}-page="{slug}"'
         else:
             main = '<main>\n             <p align="left"><iframe id="ChiaHouse" src="https://las-pinas.com/h.html?i=kristoffer" onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+&quot;px&quot;;}(this));" style="width:50vw; min-height: 600px;border:none;overflow:scroll;" houseid="kristoffer"></iframe></p>\n        </main>'
