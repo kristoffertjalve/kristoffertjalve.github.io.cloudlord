@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'content/pages.json'
+      - 'templates/page.html'
       - 'scripts/build_pages.py'
       - '.github/workflows/sync-pages.yml'
   workflow_dispatch:
