@@ -1,16 +1,20 @@
 # Cloudlord Management
 
-A lightweight static website hosted on GitHub Pages.
+A lightweight static site hosted on GitHub Pages, with no framework or build dependencies beyond Python's standard library.
 
 ## Edit estate and About descriptions
 
-**Edit `content/pages.json`**, rather than the copies of `data-text` in HTML files.
+Edit **`content/pages.json`**, not the generated HTML pages. Descriptions use Markdown links (`[label](https://example.com)`) and existing HTML formatting (`<br>`, `<u>`). Avoid double quotes inside descriptions because they are embedded in HTML attributes.
 
-The `estates` and `about` objects are keyed by page slug. Descriptions retain the site's existing format: Markdown links such as `[Tiny Awards](https://tinyawards.net/)`, plus HTML `<br>` and `<u>` tags. Avoid double quotes inside descriptions because they are embedded in HTML attributes.
+## Edit the shared layout
 
-Changes to `content/pages.json` on `main` trigger a GitHub Actions workflow that regenerates and commits synchronized HTML pages. GitHub Pages then publishes them. You can also run the workflow manually.
+Edit **`templates/page.html`** to change the common page structure, sidebars, navigation, scripts, or styling references. The template includes placeholders for the page title, description, canonical URL, body state, main content, and each navigation description.
 
-To generate locally:
+**Do not edit generated HTML directly.** All 15 HTML pages (homepage, 10 estates, 4 About pages) are produced by `scripts/build_pages.py`. Titles and page slugs are defined in the generator's page manifest. SEO descriptions are derived from the content.
+
+When you push edits to `content/pages.json`, `templates/page.html`, or `scripts/build_pages.py` on `main`, GitHub Actions regenerates and commits the pages, then GitHub Pages publishes them. The workflow also supports manual runs.
+
+To generate and check locally:
 
 ```sh
 python3 scripts/build_pages.py
@@ -19,16 +23,15 @@ node --check estate-router.js
 node --check script.js
 ```
 
-The generator synchronizes navigation descriptions across all pages and pre-rendered descriptions on direct estate/About URLs. It validates that every navigation entry has matching content and preserves existing page layout, metadata, router, fruitfly, and Are.na messages.
+## Architecture
 
-Adding or removing an estate still requires updating the navigation markup, page directory, and sitemap. This first stage centralizes editorial descriptions; it does not yet consolidate the HTML page shell into a template.
-
-## Files
-
-- `content/pages.json` — canonical editorial copy
-- `scripts/build_pages.py` — generator and consistency checker
-- `.github/workflows/sync-pages.yml` — automatic synchronization on `main`
-- `index.html`, `estates/*/index.html`, and About directories — static pages
-- `estate-router.js` — instant navigation and history
-- `script.js` — existing visual interactions and Are.na messages
+- `content/pages.json` — editorial descriptions
+- `templates/page.html` — shared HTML layout and navigation
+- `scripts/build_pages.py` — static generator and consistency checker
+- `.github/workflows/sync-pages.yml` — automatic generation on `main`
+- `index.html`, `estates/*/index.html`, and About pages — generated static output
+- `estate-router.js` — instant navigation and browser history
+- `script.js` — existing animations and Are.na messages
 - `styles.css` — styling
+
+Adding or removing an estate requires updating the page manifest, template navigation, and sitemap. Existing URLs and client-side navigation are preserved.
