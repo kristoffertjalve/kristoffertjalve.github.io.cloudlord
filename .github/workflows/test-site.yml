@@ -26,3 +26,11 @@ jobs:
         run: |
           node --check estate-router.js
           node --check script.js
+      - name: Install browser test tools
+        run: |
+          npm install --no-save @playwright/test
+          npx playwright install --with-deps chromium
+      - name: Test desktop and mobile navigation in Chromium
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/cloudlord-http.log 2>&1 &
+          npx playwright test tests/navigation.spec.cjs --browser chromium --workers 1
