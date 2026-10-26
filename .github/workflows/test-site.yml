@@ -1,0 +1,28 @@
+name: Test Cloudlord site
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate pages
+        run: python scripts/build_pages.py
+      - name: Check generated output and navigation invariants
+        run: |
+          python scripts/build_pages.py --check
+          python -m unittest discover -s tests -v
+      - name: Check JavaScript syntax
+        run: |
+          node --check estate-router.js
+          node --check script.js
