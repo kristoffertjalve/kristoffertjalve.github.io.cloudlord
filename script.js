@@ -34,61 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animateFruitfly();
     
-    const listItems = document.querySelectorAll('aside.left-panel ul li');
+    // Navigation and mobile page rendering are handled exclusively by estate-router.js.
     const mainSection = document.querySelector('main');
     const messageBoard = document.getElementById('message-board');
     const ARENA_CHANNEL = 'telegrams-bhyik8dsunw';
     const ARENA_API_URL = `https://api.are.na/v2/channels/${ARENA_CHANNEL}/contents?per=100`;
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
-
-    // Function to determine if the screen is mobile-sized
-    const isMobile = () => window.innerWidth <= 768;
-
-    // Create a mobile-friendly overlay
-    const overlay = document.createElement('div');
-    overlay.classList.add('content-overlay');
-    body.appendChild(overlay);
-
-    listItems.forEach(item => {
-        item.addEventListener('click', () => {
-            let text = item.getAttribute('data-text');
-
-            // Convert [text](URL) into clickable links
-            const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-            if (window.innerWidth <= 768) {
-                // Mobile: Show content in overlay
-                overlay.innerHTML = `<button onclick="document.querySelector('.content-overlay').classList.remove('active')">Close</button><p class="main-text">${formattedText}</p>`;
-                overlay.classList.add('active');
-            } else {
-                // Desktop: Keep using <main>
-                document.querySelector('main').innerHTML = `<p class="main-text">${formattedText}</p>`;
-            }
-        });
-    });
-
-    // ✅ Fix: Ensure dark mode is applied when clicking a list item
-    listItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const isDarkMode = body.classList.contains('dark-mode'); // Check if dark mode is active
-            let color = item.getAttribute('data-color');
-
-            // If dark mode is active, override color
-            if (isDarkMode) {
-                color = 'var(--bg-color)'; // Ensure it stays in dark mode
-            }
-
-            let text = item.getAttribute('data-text');
-
-            // Convert [text](URL) into clickable links
-            const formattedText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-            // Update main section
-            mainSection.style.color = 'var(--text-color)'; // Ensure text is visible in dark mode
-            mainSection.innerHTML = `<p class="main-text">${formattedText}</p>`;
-        });
-    });
 
     // ✅ Dark Mode Toggle Fix
     if (darkModeToggle) {
@@ -125,8 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            console.log('Are.na API Response:', data);
-
             if (!data.contents || data.contents.length === 0) {
                 messageBoard.innerHTML = '<p>No messages available.</p>';
                 return;
