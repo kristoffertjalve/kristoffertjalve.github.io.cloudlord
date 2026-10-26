@@ -32,29 +32,23 @@ document.addEventListener('DOMContentLoaded', () => {
       document.title = heading.textContent + ' — Cloudlord.management';
     }
     [...estateLinks,...aboutLinks].forEach(link => {
-      if ((link.dataset.estate || link.dataset.about) === slug) link.setAttribute('aria-current', 'page');
-      else link.removeAttribute('aria-current');
+      if ((link.dataset.estate || link.dataset.about) === slug) link.querySelector('a')?.setAttribute('aria-current', 'page');
+      else link.querySelector('a')?.removeAttribute('aria-current');
     });
   }
-  [...estateLinks,...aboutLinks].forEach(item => {
-    const go = () => {
+  [...estateLinks, ...aboutLinks].forEach(item => {
+    const anchor = item.querySelector('a[href]');
+    if (!anchor) return;
+    anchor.addEventListener('click', event => {
+      // Preserve normal link behavior for modifier clicks, new tabs and downloads.
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || anchor.hasAttribute('download')) return;
+      event.preventDefault();
       const slug = item.dataset.estate || item.dataset.about;
-      const path = item.dataset.about ? '/' + slug + '/' : '/estates/' + slug + '/';
-      if (location.pathname !== path) history.pushState({estate:slug}, '', path);
+      const path = anchor.getAttribute('href');
+      if (location.pathname !== path) history.pushState({estate: slug}, '', path);
       render(slug);
-      if (mobile()) main.scrollIntoView({behavior:'auto',block:'start'});
-    };
-    item.addEventListener('click', event => {
-      event.stopImmediatePropagation();
-      go();
-    }, true);
-    item.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        go();
-      }
-    }, true);
+      if (mobile()) main.scrollIntoView({behavior: 'auto', block: 'start'});
+    });
   });
   window.addEventListener('popstate', () => {
     const match = location.pathname.match(/^\/estates\/([^/]+)\/?$/);
