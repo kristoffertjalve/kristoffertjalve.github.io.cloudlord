@@ -42,6 +42,8 @@ class PageParser(HTMLParser):
 class SiteTests(unittest.TestCase):
     def test_generated_pages_and_metadata(self):
         pages = list(build_pages.build())
+        manifest = list(build_pages.manifest_entries())
+        self.assertEqual(len(pages), len(manifest) + 1)
         self.assertEqual(len(pages), 15)
         for path, output in pages:
             with self.subTest(page=str(path.relative_to(ROOT))):
@@ -52,12 +54,21 @@ class SiteTests(unittest.TestCase):
                 self.assertEqual(len(parsed.canonicals), 1)
                 self.assertEqual(len(parsed.descriptions), 1)
                 self.assertTrue(parsed.descriptions[0])
-                self.assertEqual(len(parsed.nav_links), 14)
+                self.assertEqual(len(parsed.nav_links), len(manifest))
                 self.assertEqual(len({link["href"] for link in parsed.nav_links}), 14)
                 self.assertTrue(all("href" in link for link in parsed.nav_links))
                 self.assertEqual(parsed.back_links, 0 if path == ROOT / "index.html" else 1)
                 self.assertNotIn("{{", output)
                 self.assertEqual(path.read_text(encoding="utf-8"), output)
+
+    def test_markdown_and_manifest_rendering(self):
+        rendered = build_pages.render_markdown('A "quoted" [link](https://example.com)\\n\\n__Heading__')
+        self.assertIn('A "quoted"', rendered)
+        self.assertIn('<a href="https://example.com"', rendered)
+        self.assertIn('<br><br><u>Heading</u>', rendered)
+        manifest = list(build_pages.manifest_entries())
+        self.assertEqual(len({(kind, entry["slug"]) for kind, entry, _ in manifest}), len(manifest))
+        self.assertTrue(all(markdown.strip() for _, _, markdown in manifest))
 
     def test_router_uses_native_anchor_navigation(self):
         router = (ROOT / "estate-router.js").read_text(encoding="utf-8")
