@@ -13,9 +13,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content" / "pages.json"
-LINK = re.compile(r"\\[([^\\]]+)\\]\\(([^)]+)\\)")
-NAV = re.compile(r'(<li\\s+data-(estate|about)="([^"]+)"[^>]*?data-text=")([\\s\\S]*?)("(?=[^>]*>))')
-MAIN = re.compile(r'(<main><article class="main-text estate-page"><h1>[^<]*</h1><div>)([\\s\\S]*?)(</div></article></main>)')
+LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+NAV = re.compile(r'(<li\s+data-(estate|about)="([^"]+)"[^>]*?data-text=")([\s\S]*?)("(?=[^>]*>))')
+MAIN = re.compile(r'(<main><article class="main-text estate-page"><h1>[^<]*</h1><div>)([\s\S]*?)(</div></article></main>)')
 
 def render_links(text):
     def replace(match):
