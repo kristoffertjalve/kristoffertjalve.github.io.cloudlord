@@ -1,0 +1,63 @@
+{
+  "estates": [
+    {
+      "slug": "naive-yearly",
+      "title": "Naiveyearly.com"
+    },
+    {
+      "slug": "diagram-website",
+      "title": "Diagram.website"
+    },
+    {
+      "slug": "naive-weekly",
+      "title": "Naiveweekly.com"
+    },
+    {
+      "slug": "tiny-awards",
+      "title": "Tinyawards.net"
+    },
+    {
+      "slug": "my-girlfriend-is-an-artist",
+      "title": "Mygirlfriendisanartist.com"
+    },
+    {
+      "slug": "wilderness-land",
+      "title": "Wilderness.land"
+    },
+    {
+      "slug": "internet-phone-book",
+      "title": "Internetphonebook.net",
+      "badge": " 🆕"
+    },
+    {
+      "slug": "url-poetry-club",
+      "title": "Urlpoetry.club"
+    },
+    {
+      "slug": "postcard-place",
+      "title": "Postcard.place"
+    },
+    {
+      "slug": "apossible",
+      "title": "Apossible.com"
+    }
+  ],
+  "about": [
+    {
+      "slug": "owner",
+      "title": "Owner"
+    },
+    {
+      "slug": "partners",
+      "title": "Partners"
+    },
+    {
+      "slug": "press",
+      "title": "Press"
+    },
+    {
+      "slug": "contact",
+      "title": "Contact"
+    }
+  ]
+}
