@@ -9,7 +9,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
-PLACEHOLDER = re.compile(r"\{\{CONTENT:(estate|about):([^}]+)\}\}")
 MANIFEST = ROOT / "content/manifest.json"
 BASE = "https://cloudlord.management"
 HOME_DESCRIPTION = "An internet surreal estate holding company."
@@ -27,15 +26,15 @@ def render_markdown(value):
     """Render the site's deliberately small Markdown vocabulary, preserving line breaks."""
     value = value.strip()
     value = html.escape(value, quote=False)
-    value = re.sub(r"__(.+?)__", r"<u>\\1</u>", value)
+    value = re.sub(r"__(.+?)__", r"<u>\1</u>", value)
     value = render_links(value)
-    return re.sub(r"\\n{2,}", "<br><br>", value).replace("\\n", "<br>")
+    return re.sub(r"\n{2,}", "<br><br>", value).replace("\n", "<br>")
 
 
 def plain_description(value):
     value = LINK.sub(lambda m: m.group(1), value)
-    value = re.sub(r"__(.+?)__", r"\\1", value)
-    return re.sub(r"\\s+", " ", value).strip()[:155]
+    value = re.sub(r"__(.+?)__", r"\1", value)
+    return re.sub(r"\s+", " ", value).strip()[:155]
 
 
 def manifest_entries():
@@ -72,7 +71,7 @@ def build():
             data_attr = "data-estate" if kind == "estates" else "data-about"
             nav.append('<li ' + data_attr + '="' + slug + '" data-html="' + html.escape(render_markdown(markdown), quote=True) + '"><a href="' + url + '">' + html.escape(title) + '</a></li>')
         nav.append("</ul>")
-    nav_html = "\\n".join(nav)
+    nav_html = "\n".join(nav)
     for path, kind, entry, markdown in pages:
         slug = entry["slug"] if entry else None
         heading = entry["title"] if entry else ""
