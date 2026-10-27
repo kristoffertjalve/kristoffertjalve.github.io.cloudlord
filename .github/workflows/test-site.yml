@@ -3,6 +3,14 @@ on:
   pull_request:
   push:
     branches: [main]
+    paths:
+      - 'estate-router.js'
+      - 'script.js'
+      - 'styles.css'
+      - 'templates/page.html'
+      - 'scripts/build_pages.py'
+      - 'tests/**'
+      - '.github/workflows/test-site.yml'
   workflow_dispatch:
 
 permissions:
