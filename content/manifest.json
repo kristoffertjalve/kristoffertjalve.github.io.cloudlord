@@ -2,44 +2,54 @@
   "estates": [
     {
       "slug": "naive-yearly",
-      "title": "Naiveyearly.com"
+      "title": "Naiveyearly.com",
+      "description": "A traveling gathering for the web, bringing together artists, designers, and thinkers exploring internet culture, open protocols, and new ways of living."
     },
     {
       "slug": "diagram-website",
-      "title": "Diagram.website"
+      "title": "Diagram.website",
+      "description": "A curated map of over 200 links exploring internet philosophies, independent web culture, and alternative ways of navigating the internet."
     },
     {
       "slug": "naive-weekly",
-      "title": "Naiveweekly.com"
+      "title": "Naiveweekly.com",
+      "description": "An independent publication and living archive of the Poetic Web, documenting websites, people, ideas, and creative internet culture since 2018."
     },
     {
       "slug": "tiny-awards",
-      "title": "Tinyawards.net"
+      "title": "Tinyawards.net",
+      "description": "An annual celebration of small, poetic, creative, handmade websites, recognizing independent web projects through public nominations and voting."
     },
     {
       "slug": "my-girlfriend-is-an-artist",
-      "title": "Mygirlfriendisanartist.com"
+      "title": "Mygirlfriendisanartist.com",
+      "description": "A personal collection of analogue photographs by artist Ana Šantl, accompanied by intimate writing and presented as a love project on the web."
     },
     {
       "slug": "wilderness-land",
-      "title": "Wilderness.land"
+      "title": "Wilderness.land",
+      "description": "An interactive internet wilderness made from a Google Sheet, inviting visitors to wander through hundreds of websites and discover the unexpected."
     },
     {
       "slug": "internet-phone-book",
       "title": "Internetphonebook.net",
-      "badge": " 🆕"
+      "badge": " 🆕",
+      "description": "A printed guide to the poetic web, featuring hundreds of personal websites, essays, and a Dial-a-Site system for exploring the internet."
     },
     {
       "slug": "url-poetry-club",
-      "title": "Urlpoetry.club"
+      "title": "Urlpoetry.club",
+      "description": "An experiment in found poetry made from website domain names, exploring internet memory, online kinship, and the poetry of web addresses."
     },
     {
       "slug": "postcard-place",
-      "title": "Postcard.place"
+      "title": "Postcard.place",
+      "description": "An offline travel email project exploring correspondence and travel."
     },
     {
       "slug": "apossible",
-      "title": "Apossible.com"
+      "title": "Apossible.com",
+      "description": "A non-profit research and design initiative exploring how psychology, design, and technology can support human flourishing, care, and curiosity."
     }
   ],
   "about": [
