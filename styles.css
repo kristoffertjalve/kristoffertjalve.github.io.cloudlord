@@ -73,7 +73,7 @@ body {
         align-items: center;
         text-align: center;
     }
-    .left-panel ul li { cursor: pointer; }
+
     main {
         display: block;
         width: 100%;
@@ -125,16 +125,7 @@ aside ul {
     padding: 0;
 }
 
-aside ul li {
-    cursor: pointer; /* Add cursor pointer */
-}
 
-@media (min-width: 769px) {
-    aside.left-panel ul li:hover {
-        text-decoration: underline;
-        cursor: pointer; /* Add a pointer cursor for better usability */
-    }
-}
 
 main {
     width: 60%;
@@ -160,13 +151,6 @@ main {
     text-decoration: none;
 }
 
-.main-parapgraph {
-    font-family: 'Inconsolata', monospace;
-    font-size: 13px;
-    color: #333;
-    margin: 0;
-    padding: 1em;
-}
 
 #message-board {
     font-family: 'Inconsolata', monospace;
@@ -256,12 +240,6 @@ main {
 
 /* Estate permalinks: retain existing design, make estate content visible on mobile. */
 .estate-page h1 {font-size:13px;font-weight:normal;margin:0 0 1em;text-decoration:underline}
-.left-panel li[data-estate] a[aria-current="page"] {text-decoration:underline}
-.left-panel li[data-estate] a:focus-visible {outline:2px solid var(--text-color);outline-offset:2px}
-@media (max-width:768px) {body[data-estate-page] main {display:block;width:100%;box-sizing:border-box}}
-
-@media(max-width:768px){body[data-about-page] main{display:block;width:100%;box-sizing:border-box}}
-.left-panel li[data-about] a[aria-current="page"]{text-decoration:underline}
 
 /* Keep animated fly / webring visible while hiding the OS pointer. */
 @media (hover: hover) and (pointer: fine) {
@@ -275,4 +253,5 @@ main {
 .left-panel li[data-about] > a:hover,
 .left-panel li[data-estate] > a[aria-current="page"],
 .left-panel li[data-about] > a[aria-current="page"] { text-decoration: underline; }
+.left-panel li[data-estate] > a:focus-visible,
 .left-panel li[data-about] > a:focus-visible { outline: 2px solid var(--text-color); outline-offset: 2px; }

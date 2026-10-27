@@ -1,0 +1,19 @@
+[Internetphonebook.net](https://internetphonebook.net) is a printed publication for exploring the vast poetic web.
+
+It brings together hundreds of personal websites alongside essays and observations about the web as a medium for creative expression. Issue One, published in 2025, features more than 700 websites by designers, developers, artists, writers, curators, educators, and other internet people.
+
+At its heart, the Internet Phone Book is about connecting people. Each website is listed with its own telephone number, which readers can dial using [Dial-a-Site](https://internetphonebook.net/dial/) to visit the site and meet the person behind it. The book is a low-tech invitation to discover the web through its inhabitants.
+
+__Issue One__
+
+The first issue was printed twice and sold out twice. It has since found its way into libraries, bookshops, and collections around the world, including the National Library of Greece, the National Library of Scotland, and the British Film Institute Library.
+
+__Beyond the book__
+
+The Internet Phone Book has also become a reason to gather. Through exhibitions, talks, readings, and other events in cities including Athens, Rotterdam, Copenhagen, Seoul, Amsterdam, and London, the publication creates opportunities for people to meet and exchange ideas about the web.
+
+__Issue Two__
+
+The next edition is in development.
+
+Made in collaboration with [Elliott Cost](https://elliott.computer/).

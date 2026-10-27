@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'content/pages.json'
+      - 'content/**'
       - 'templates/page.html'
       - 'scripts/build_pages.py'
       - '.github/workflows/sync-pages.yml'

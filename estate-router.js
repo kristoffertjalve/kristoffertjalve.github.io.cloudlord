@@ -16,14 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.removeAttribute('data-about-page');
       document.title = homeTitle;
     } else {
-      const text = item.getAttribute('data-text') || '';
-      const description = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) => {
-        const href = /^(https?:|mailto:|\/)/i.test(url) ? url : 'https://' + url;
-        const link = document.createElement('a');
-        link.href = href;
-        const safe = link.href.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-        return '<a href="' + safe + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
-      });
+      // Pre-rendered HTML is generated from Markdown by the Python build script.
+      const description = item.getAttribute('data-html') || '';
       const heading = document.createElement('h1');
       heading.textContent = item.textContent.trim().replace(' 🆕', '');
       main.innerHTML = '<article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><div>' + description + '</div></article>';

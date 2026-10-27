@@ -29,11 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
         fruitfly.style.transform =
             `translate(${flyX - 16}px, ${flyY - 16}px)`;
 
-        requestAnimationFrame(animateFruitfly);
+        if (!document.hidden) requestAnimationFrame(animateFruitfly);
     }
 
-    animateFruitfly();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        animateFruitfly();
+    } else {
+        fruitfly.hidden = true;
+    }
     
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !fruitfly.hidden) requestAnimationFrame(animateFruitfly);
+    });
+
     // Navigation and mobile page rendering are handled exclusively by estate-router.js.
     const mainSection = document.querySelector('main');
     const messageBoard = document.getElementById('message-board');
@@ -120,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const timestampLink = document.createElement('a');
                 timestampLink.href = blockUrl;
                 timestampLink.target = '_blank';
+                timestampLink.rel = 'noopener noreferrer';
                 timestampLink.classList.add('timestamp');
                 timestampLink.textContent = commentCount > 0 
                     ? `${formattedDate} (${commentCount})` 
@@ -136,8 +145,5 @@ document.addEventListener('DOMContentLoaded', () => {
             messageBoard.innerHTML = '<p>Failed to load messages.</p>';
         });
 
-    // Debug: Recheck screen size dynamically
-    window.addEventListener('resize', () => {
-        console.log('Screen resized. Current mode:', isMobile() ? 'Mobile' : 'Desktop');
-    });
+
 });
