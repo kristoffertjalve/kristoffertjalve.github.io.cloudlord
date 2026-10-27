@@ -3,53 +3,73 @@
     {
       "slug": "naive-yearly",
       "title": "Naiveyearly.com",
-      "description": "A traveling gathering for the web, bringing together artists, designers, and thinkers exploring internet culture, open protocols, and new ways of living."
+      "description": "A traveling gathering for the web, bringing together artists, designers, and thinkers exploring internet culture, open protocols, and new ways of living.",
+      "projectUrl": "https://naiveyearly.com",
+      "projectType": "EventSeries"
     },
     {
       "slug": "diagram-website",
       "title": "Diagram.website",
-      "description": "A curated map of over 200 links exploring internet philosophies, independent web culture, and alternative ways of navigating the internet."
+      "description": "A curated map of over 200 links exploring internet philosophies, independent web culture, and alternative ways of navigating the internet.",
+      "projectUrl": "https://diagram.website",
+      "projectType": "CreativeWork"
     },
     {
       "slug": "naive-weekly",
       "title": "Naiveweekly.com",
-      "description": "An independent publication and living archive of the Poetic Web, documenting websites, people, ideas, and creative internet culture since 2018."
+      "description": "An independent publication and living archive of the Poetic Web, documenting websites, people, ideas, and creative internet culture since 2018.",
+      "projectUrl": "https://www.naiveweekly.com/",
+      "projectType": "Periodical"
     },
     {
       "slug": "tiny-awards",
       "title": "Tinyawards.net",
-      "description": "An annual celebration of small, poetic, creative, handmade websites, recognizing independent web projects through public nominations and voting."
+      "description": "An annual celebration of small, poetic, creative, handmade websites, recognizing independent web projects through public nominations and voting.",
+      "projectUrl": "https://tinyawards.net/",
+      "projectType": "CreativeWork"
     },
     {
       "slug": "my-girlfriend-is-an-artist",
       "title": "Mygirlfriendisanartist.com",
-      "description": "A personal collection of analogue photographs by artist Ana Šantl, accompanied by intimate writing and presented as a love project on the web."
+      "description": "A personal collection of analogue photographs by artist Ana Šantl, accompanied by intimate writing and presented as a love project on the web.",
+      "projectUrl": "https://mygirlfriendisanartist.com",
+      "projectType": "CreativeWork"
     },
     {
       "slug": "wilderness-land",
       "title": "Wilderness.land",
-      "description": "An interactive internet wilderness made from a Google Sheet, inviting visitors to wander through hundreds of websites and discover the unexpected."
+      "description": "An interactive internet wilderness made from a Google Sheet, inviting visitors to wander through hundreds of websites and discover the unexpected.",
+      "projectUrl": "https://wilderness.land",
+      "projectType": "WebApplication"
     },
     {
       "slug": "internet-phone-book",
       "title": "Internetphonebook.net",
       "badge": " 🆕",
-      "description": "A printed guide to the poetic web, featuring hundreds of personal websites, essays, and a Dial-a-Site system for exploring the internet."
+      "description": "A printed guide to the poetic web, featuring hundreds of personal websites, essays, and a Dial-a-Site system for exploring the internet.",
+      "projectUrl": "https://internetphonebook.net",
+      "projectType": "CreativeWork"
     },
     {
       "slug": "url-poetry-club",
       "title": "Urlpoetry.club",
-      "description": "An experiment in found poetry made from website domain names, exploring internet memory, online kinship, and the poetry of web addresses."
+      "description": "An experiment in found poetry made from website domain names, exploring internet memory, online kinship, and the poetry of web addresses.",
+      "projectUrl": "https://urlpoetry.club",
+      "projectType": "CreativeWork"
     },
     {
       "slug": "postcard-place",
       "title": "Postcard.place",
-      "description": "An offline travel email project exploring correspondence and travel."
+      "description": "An offline travel email project exploring correspondence and travel.",
+      "projectUrl": "https://postcard.place",
+      "projectType": "CreativeWork"
     },
     {
       "slug": "apossible",
       "title": "Apossible.com",
-      "description": "A non-profit research and design initiative exploring how psychology, design, and technology can support human flourishing, care, and curiosity."
+      "description": "A non-profit research and design initiative exploring how psychology, design, and technology can support human flourishing, care, and curiosity.",
+      "projectUrl": "https://apossible.com/",
+      "projectType": "CreativeWork"
     }
   ],
   "about": [
