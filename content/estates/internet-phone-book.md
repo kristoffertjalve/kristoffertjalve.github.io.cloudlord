@@ -6,10 +6,6 @@ __Issue One__
 
 Issue One, published in 2025, features more than 700 websites by designers, developers, artists, writers, curators, educators, and other internet people. It had two sold-out print-runs and has since found its way into libraries, bookshops, and collections around the world, including the National Library of Greece, the National Library of Scotland, and the British Film Institute Library.
 
-__Beyond the book__
-
-The Internet Phone Book has also become a reason to gather. Through exhibitions, talks, readings, and other events in cities including Athens, Rotterdam, Copenhagen, Seoul, Amsterdam, and London, the publication creates opportunities for people to meet and exchange ideas about the web.
-
 __Issue Two__
 
 The next edition is in development.
