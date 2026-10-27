@@ -1,5 +1,7 @@
 """Regression checks for the generated site and semantic navigation."""
 import sys
+import json
+import xml.etree.ElementTree as ET
 import unittest
 from html.parser import HTMLParser
 from pathlib import Path
@@ -41,7 +43,14 @@ class PageParser(HTMLParser):
 
 class SiteTests(unittest.TestCase):
     def test_generated_pages_and_metadata(self):
-        pages = list(build_pages.build())
+        generated = list(build_pages.build())
+        pages = [(path, output) for path, output in generated if path.suffix == '.html']
+        self.assertEqual(len(generated), len(pages) + 2)
+        sitemap = dict(generated)[ROOT / 'sitemap.xml']
+        urls = [node.text for node in ET.fromstring(sitemap).findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
+        self.assertEqual(len(urls), len(pages))
+        self.assertEqual(len(set(urls)), len(urls))
+        self.assertIn('Sitemap: https://cloudlord.management/sitemap.xml', dict(generated)[ROOT / 'robots.txt'])
         manifest = list(build_pages.manifest_entries())
         self.assertEqual(len(pages), len(manifest) + 1)
         self.assertEqual(len(pages), 15)
@@ -58,6 +67,8 @@ class SiteTests(unittest.TestCase):
                 self.assertEqual(len({link["href"] for link in parsed.nav_links}), 14)
                 self.assertTrue(all("href" in link for link in parsed.nav_links))
                 self.assertEqual(parsed.back_links, 0 if path == ROOT / "index.html" else 1)
+                self.assertIn('application/ld+json', output)
+                self.assertIn('name="twitter:card"', output)
                 self.assertNotIn("{{", output)
                 self.assertEqual(path.read_text(encoding="utf-8"), output)
 
