@@ -88,9 +88,28 @@ def build():
         else:
             main = '<main><p align="left"><iframe id="ChiaHouse" title="Chia House" src="https://las-pinas.com/h.html?i=kristoffer" style="width:50vw;min-height:600px;border:none;overflow:scroll" houseid="kristoffer"></iframe></p></main>'
             body_attr = ""
-        schema = {"@context": "https://schema.org", "@type": "WebSite" if not entry else "WebPage", "name": "Cloudlord.management" if not entry else heading, "url": canonical, "description": description}
+        person_id = BASE + "/owner/#person"
+        website_id = BASE + "/#website"
+        graph = [
+            {"@type": "Person", "@id": person_id, "name": "Kristoffer Tjalve", "url": BASE + "/owner/"},
+            {"@type": "WebSite", "@id": website_id, "name": "Cloudlord.management",
+             "url": BASE + "/", "description": HOME_DESCRIPTION,
+             "creator": {"@id": person_id}},
+        ]
         if entry:
-            schema["isPartOf"] = {"@type": "WebSite", "name": "Cloudlord.management", "url": BASE + "/"}
+            page = {"@type": "WebPage", "@id": canonical + "#webpage",
+                    "name": heading, "url": canonical, "description": description,
+                    "isPartOf": {"@id": website_id}}
+            if kind == "estates":
+                project = {"@type": entry["projectType"], "@id": canonical + "#project",
+                           "name": heading, "url": entry["projectUrl"],
+                           "description": description}
+                page["mainEntity"] = {"@id": project["@id"]}
+                graph.append(project)
+            elif slug == "owner":
+                page["mainEntity"] = {"@id": person_id}
+            graph.append(page)
+        schema = {"@context": "https://schema.org", "@graph": graph}
         schema_json = json.dumps(schema, ensure_ascii=False).replace("<", "\\u003c")
         output = template
         for key, value in {
