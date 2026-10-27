@@ -1,8 +1,8 @@
 [Naiveyearly.com](https://naiveyearly.com) is a traveling gathering for the web.
 
-It brings designers, developers, artists, educators, writers, organizers, and other curious people into the same room to explore the web as a medium and material.
+We gather people who expand what the web is and can be. Artists, designers, educators, developers, writers and organizers who avoid nostalgia and technological utopias but use the internet and the open protocols to invite us to see the world anew in the present tense. As such, it is a day of the art of living.
 
-Talks take the form of personal essays, performances, and experiments. Just as much attention is given to the conversations between them. Rather than looking back nostalgically or forward to technological utopias, Naive Yearly is interested in what the web makes possible in the present.
+My wish is to foster an atmosphere that steers us like a gentle river, away from abstraction and into the wild sea with our pockets full of sunflower seeds, the flower cursed to follow the sun with their heads because the nymph Clytie fell in love with Apollo.
 
 __Gatherings__
 
