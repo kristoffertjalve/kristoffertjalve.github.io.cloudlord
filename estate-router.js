@@ -7,6 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeHTML = '<p align="left"><iframe id="ChiaHouse" title="Chia House" src="https://las-pinas.com/h.html?i=kristoffer" style="width:50vw;min-height:600px;border:none;overflow:scroll" houseid="kristoffer"></iframe></p>';
   const estateMap = new Map(estateLinks.map(item => [item.dataset.estate, item]));
   const homeTitle = 'Cloudlord.management';
+  const homeMetadata = {title: homeTitle, description: 'An internet surreal estate holding company.', canonical: 'https://cloudlord.management/'};
+  function updateMetadata(item) {
+    const meta = item ? JSON.parse(item.getAttribute('data-meta') || '{}') : homeMetadata;
+    const setMeta = (selector, value) => {
+      const element = document.querySelector(selector);
+      if (element && value) element.setAttribute('content', value);
+    };
+    document.title = meta.title || homeTitle;
+    setMeta('meta[name="description"]', meta.description);
+    setMeta('meta[property="og:title"]', meta.title);
+    setMeta('meta[property="og:description"]', meta.description);
+    setMeta('meta[property="og:url"]', meta.canonical);
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical && meta.canonical) canonical.href = meta.canonical;
+    const schema = document.querySelector('script[type="application/ld+json"]');
+    if (schema) {
+      const structured = { '@context': 'https://schema.org', '@type': item ? 'WebPage' : 'WebSite', name: item ? meta.title.replace(' — Cloudlord.management', '') : homeTitle, url: meta.canonical, description: meta.description };
+      if (item) structured.isPartOf = { '@type': 'WebSite', name: homeTitle, url: homeMetadata.canonical };
+      schema.textContent = JSON.stringify(structured).replace(/</g, '\\u003c');
+    }
+  }
   const mobile = () => matchMedia('(max-width: 768px)').matches;
   function render(slug) {
     const item = estateMap.get(slug) || aboutMap.get(slug);
@@ -25,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (aboutMap.has(slug)) {document.body.dataset.aboutPage = slug;document.body.removeAttribute('data-estate-page');} else {document.body.dataset.estatePage = slug;document.body.removeAttribute('data-about-page');}
       document.title = heading.textContent + ' — Cloudlord.management';
     }
+    updateMetadata(item);
     [...estateLinks,...aboutLinks].forEach(link => {
       if ((link.dataset.estate || link.dataset.about) === slug) link.querySelector('a')?.setAttribute('aria-current', 'page');
       else link.querySelector('a')?.removeAttribute('aria-current');

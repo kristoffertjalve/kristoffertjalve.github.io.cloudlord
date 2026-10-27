@@ -59,6 +59,10 @@ def build():
         slug = entry["slug"]
         path = ROOT / (f"estates/{slug}/index.html" if kind == "estates" else f"{slug}/index.html")
         pages.append((path, kind, entry, markdown))
+    metadata = {"/": {"title": "Cloudlord.management", "description": HOME_DESCRIPTION, "canonical": BASE + "/"}}
+    for kind, entry, markdown in entries:
+        url = f"/estates/{entry['slug']}/" if kind == "estates" else f"/{entry['slug']}/"
+        metadata[url] = {"title": entry["title"] + " — Cloudlord.management", "description": plain_description(markdown), "canonical": BASE + url}
     nav = []
     for kind in ("estates", "about"):
         nav.append('<p class="sidebar-title">' + ("Domains" if kind == "estates" else "About") + '</p><ul>')
@@ -69,7 +73,7 @@ def build():
             title = entry["title"] + entry.get("badge", "")
             url = f"/estates/{slug}/" if kind == "estates" else f"/{slug}/"
             data_attr = "data-estate" if kind == "estates" else "data-about"
-            nav.append('<li ' + data_attr + '="' + slug + '" data-html="' + html.escape(render_markdown(markdown), quote=True) + '"><a href="' + url + '">' + html.escape(title) + '</a></li>')
+            nav.append('<li data-meta="' + html.escape(json.dumps(metadata[url], ensure_ascii=False), quote=True) + '" ' + data_attr + '="' + slug + '" data-html="' + html.escape(render_markdown(markdown), quote=True) + '"><a href="' + url + '">' + html.escape(title) + '</a></li>')
         nav.append("</ul>")
     nav_html = "\n".join(nav)
     for path, kind, entry, markdown in pages:
@@ -84,6 +88,10 @@ def build():
         else:
             main = '<main><p align="left"><iframe id="ChiaHouse" title="Chia House" src="https://las-pinas.com/h.html?i=kristoffer" style="width:50vw;min-height:600px;border:none;overflow:scroll" houseid="kristoffer"></iframe></p></main>'
             body_attr = ""
+        schema = {"@context": "https://schema.org", "@type": "WebSite" if not entry else "WebPage", "name": "Cloudlord.management" if not entry else heading, "url": canonical, "description": description}
+        if entry:
+            schema["isPartOf"] = {"@type": "WebSite", "name": "Cloudlord.management", "url": BASE + "/"}
+        schema_json = json.dumps(schema, ensure_ascii=False).replace("<", "\\u003c")
         output = template
         for key, value in {
             "{{TITLE}}": html.escape(title, quote=True),
@@ -92,11 +100,17 @@ def build():
             "{{BODY_ATTR}}": body_attr,
             "{{MAIN}}": main,
             "{{NAVIGATION}}": nav_html,
+            "{{SCHEMA}}": schema_json,
         }.items():
             output = output.replace(key, value)
         if "{{" in output:
             raise ValueError(f"Unresolved template placeholder in {path}")
         yield path, output
+    urls = [BASE + "/" ] + [BASE + (f"/estates/{entry['slug']}/" if kind == "estates" else f"/{entry['slug']}/") for kind, entry, _ in entries]
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap += "".join("  <url><loc>" + html.escape(url) + "</loc></url>\n" for url in urls)
+    yield ROOT / "sitemap.xml", sitemap + "</urlset>\n"
+    yield ROOT / "robots.txt", "User-agent: *\nAllow: /\nSitemap: " + BASE + "/sitemap.xml\n"
 
 def main():
     parser = argparse.ArgumentParser()
