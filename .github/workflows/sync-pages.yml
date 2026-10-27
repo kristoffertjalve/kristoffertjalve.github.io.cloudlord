@@ -9,6 +9,10 @@ on:
       - '.github/workflows/sync-pages.yml'
   workflow_dispatch:
 
+concurrency:
+  group: cloudlord-page-sync-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -24,11 +28,10 @@ jobs:
           python-version: '3.12'
       - name: Generate HTML from shared content
         run: python scripts/build_pages.py
-      - name: Validate generated HTML and JavaScript
+      - name: Validate generated pages and Markdown content
         run: |
           python scripts/build_pages.py --check
-          node --check estate-router.js
-          node --check script.js
+          python -m unittest discover -s tests -v
       - name: Commit generated pages if needed
         run: |
           if ! git diff --quiet -- '*.html'; then
