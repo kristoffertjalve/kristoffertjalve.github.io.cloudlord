@@ -62,7 +62,7 @@ def build():
     metadata = {"/": {"title": "Cloudlord.management", "description": HOME_DESCRIPTION, "canonical": BASE + "/"}}
     for kind, entry, markdown in entries:
         url = f"/estates/{entry['slug']}/" if kind == "estates" else f"/{entry['slug']}/"
-        metadata[url] = {"title": entry["title"] + " — Cloudlord.management", "description": plain_description(markdown), "canonical": BASE + url}
+        metadata[url] = {"title": entry["title"] + " — Cloudlord.management", "description": entry.get("description") or plain_description(markdown), "canonical": BASE + url}
     nav = []
     for kind in ("estates", "about"):
         nav.append('<p class="sidebar-title">' + ("Domains" if kind == "estates" else "About") + '</p><ul>')
@@ -81,7 +81,7 @@ def build():
         heading = entry["title"] if entry else ""
         title = heading + " — Cloudlord.management" if entry else "Cloudlord.management"
         canonical = BASE + (f"/estates/{slug}/" if kind == "estates" else f"/{slug}/" if kind else "/")
-        description = plain_description(markdown) if entry else HOME_DESCRIPTION
+        description = entry.get("description") or plain_description(markdown) if entry else HOME_DESCRIPTION
         if entry:
             main = '<main><article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><h1>' + html.escape(heading) + '</h1><div>' + render_markdown(markdown) + '</div></article></main>'
             body_attr = f' data-{"estate" if kind == "estates" else "about"}-page="{slug}"'
