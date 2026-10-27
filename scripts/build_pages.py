@@ -107,10 +107,10 @@ def build():
             raise ValueError(f"Unresolved template placeholder in {path}")
         yield path, output
     urls = [BASE + "/" ] + [BASE + (f"/estates/{entry['slug']}/" if kind == "estates" else f"/{entry['slug']}/") for kind, entry, _ in entries]
-    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n'
-    sitemap += "".join("  <url><loc>" + html.escape(url) + "</loc></url>\\n" for url in urls)
-    yield ROOT / "sitemap.xml", sitemap + "</urlset>\\n"
-    yield ROOT / "robots.txt", "User-agent: *\\nAllow: /\\nSitemap: " + BASE + "/sitemap.xml\\n"
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap += "".join("  <url><loc>" + html.escape(url) + "</loc></url>\n" for url in urls)
+    yield ROOT / "sitemap.xml", sitemap + "</urlset>\n"
+    yield ROOT / "robots.txt", "User-agent: *\nAllow: /\nSitemap: " + BASE + "/sitemap.xml\n"
 
 def main():
     parser = argparse.ArgumentParser()
