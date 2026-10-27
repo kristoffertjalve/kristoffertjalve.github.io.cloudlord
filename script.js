@@ -22,24 +22,27 @@ document.addEventListener('DOMContentLoaded', () => {
         mouseY = event.clientY;
     });
 
+    let flyFrame = null;
     function animateFruitfly() {
+        flyFrame = null;
+        if (document.hidden) return;
         flyX += (mouseX - flyX) * 0.18;
         flyY += (mouseY - flyY) * 0.18;
 
         fruitfly.style.transform =
             `translate(${flyX - 16}px, ${flyY - 16}px)`;
 
-        if (!document.hidden) requestAnimationFrame(animateFruitfly);
+        if (!document.hidden) flyFrame = requestAnimationFrame(animateFruitfly);
     }
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        animateFruitfly();
+        flyFrame = requestAnimationFrame(animateFruitfly);
     } else {
         fruitfly.hidden = true;
     }
     
     document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && !fruitfly.hidden) requestAnimationFrame(animateFruitfly);
+        if (!document.hidden && !fruitfly.hidden && flyFrame === null) flyFrame = requestAnimationFrame(animateFruitfly);
     });
 
     // Navigation and mobile page rendering are handled exclusively by estate-router.js.
@@ -77,7 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Load Are.na messages for the right panel
-    fetch(ARENA_API_URL)
+    let messagesStarted = false;
+    function loadMessagesIfVisible() {
+        if (messagesStarted || !messageBoard || !window.matchMedia("(min-width: 769px)").matches) return;
+        messagesStarted = true;
+        fetch(ARENA_API_URL)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`API Error: ${response.status}`);
@@ -144,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching Are.na messages:', error);
             messageBoard.innerHTML = '<p>Failed to load messages.</p>';
         });
+    }
+    loadMessagesIfVisible();
+    window.matchMedia('(min-width: 769px)').addEventListener('change', loadMessagesIfVisible);
 
 
 });
