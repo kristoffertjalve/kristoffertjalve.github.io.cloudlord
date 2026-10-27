@@ -19,11 +19,7 @@ The partners are the keystones of Cloudlord Management. They have my phone numbe
                     13 - [Martin Thörnkvist](https://thornkvist.se/)
                     14 - [Daniele Lauriola](https://www.instagram.com/dnllrl/)
                     15 - [Carla Cammilla Hjort](https://www.instagram.com/carla_cammilla/)
-
                     16 - [Nicole Blicher Jonasson](https://www.instagram.com/nicole.jonasson/)
-
                     17 - [Alex Dobrenko](https://substack.com/@alexdobrenko)
-
-
 
                     More TBA.
