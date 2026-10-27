@@ -62,7 +62,7 @@ class SiteTests(unittest.TestCase):
                 self.assertEqual(path.read_text(encoding="utf-8"), output)
 
     def test_markdown_and_manifest_rendering(self):
-        rendered = build_pages.render_markdown('A "quoted" [link](https://example.com)\\n\\n__Heading__')
+        rendered = build_pages.render_markdown('A "quoted" [link](https://example.com)\n\n__Heading__')
         self.assertIn('A "quoted"', rendered)
         self.assertIn('<a href="https://example.com"', rendered)
         self.assertIn('<br><br><u>Heading</u>', rendered)
