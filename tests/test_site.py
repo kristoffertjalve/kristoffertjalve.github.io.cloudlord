@@ -81,6 +81,15 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len({(kind, entry["slug"]) for kind, entry, _ in manifest}), len(manifest))
         self.assertTrue(all(markdown.strip() for _, _, markdown in manifest))
 
+    def test_performance_loading_guards(self):
+        template = (ROOT / "templates/page.html").read_text(encoding="utf-8")
+        script = (ROOT / "script.js").read_text(encoding="utf-8")
+        self.assertIn('<script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">', template)
+        self.assertIn('loading="lazy" src="https://internetphonebook.net/badges/', template)
+        self.assertIn('<script defer src="https://melonking.net/scripts/flood.js">', template)
+        self.assertIn("messagesStarted", script)
+        self.assertIn("flyFrame === null", script)
+
     def test_router_uses_native_anchor_navigation(self):
         router = (ROOT / "estate-router.js").read_text(encoding="utf-8")
         self.assertIn("anchor.addEventListener('click'", router)
