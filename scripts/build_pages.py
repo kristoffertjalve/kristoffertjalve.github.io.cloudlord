@@ -31,6 +31,22 @@ def render_markdown(value):
     return re.sub(r"\n{2,}", "<br><br>", value).replace("\n", "<br>")
 
 
+def render_calendar(value):
+    """Render calendar entries in their editorial order, including past dates."""
+    events = []
+    for block in re.split(r"\\n\\s*\\n", value.strip()):
+        lines = [line.strip() for line in block.splitlines() if line.strip()]
+        if len(lines) != 3:
+            raise ValueError("Calendar entries require date/place, event and role lines")
+        date_place, event, role = lines
+        events.append('<div class="calendar-entry"><p class="calendar-date">' +
+                      render_links(html.escape(date_place)) +
+                      '</p><p class="calendar-event">' + render_links(html.escape(event)) +
+                      '</p><p class="calendar-role">' + render_links(html.escape(role)) +
+                      '</p></div>')
+    return "\\n".join(events)
+
+
 def plain_description(value):
     value = LINK.sub(lambda m: m.group(1), value)
     value = re.sub(r"__(.+?)__", r"\1", value)
@@ -63,6 +79,7 @@ def build():
     for kind, entry, markdown in entries:
         url = f"/estates/{entry['slug']}/" if kind == "estates" else f"/{entry['slug']}/"
         metadata[url] = {"title": entry["title"] + " — Cloudlord.management", "description": entry.get("description") or plain_description(markdown), "canonical": BASE + url}
+    calendar_html = render_calendar((ROOT / "content/calendar.md").read_text(encoding="utf-8"))
     nav = []
     for kind in ("estates", "about"):
         nav.append('<p class="sidebar-title">' + ("Domains" if kind == "estates" else "About") + '</p><ul>')
@@ -120,6 +137,7 @@ def build():
             "{{BODY_ATTR}}": body_attr,
             "{{MAIN}}": main,
             "{{NAVIGATION}}": nav_html,
+            "{{CALENDAR}}": calendar_html,
             "{{SCHEMA}}": schema_json,
         }.items():
             output = output.replace(key, value)
