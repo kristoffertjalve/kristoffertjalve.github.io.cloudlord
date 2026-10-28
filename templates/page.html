@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{TITLE}}</title>
-    <link rel="stylesheet" href="/styles.css?v=calendar-windows-20261028">
+    <link rel="stylesheet" href="/styles.css?v=mobile-panels-20261028">
     
     <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script defer src="/script.js?v=context-cursors-20261028"></script>
+    <script defer src="/script.js?v=mobile-messages-20261028"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="47956f49-3450-4744-95fa-f135a8890f68"></script>
-    <script defer src="/estate-router.js?v=mobile-window-20261028"></script>
+    <script defer src="/estate-router.js?v=mobile-panels-20261028"></script>
     <meta name="description" content="{{DESCRIPTION}}">
     <link rel="canonical" href="{{CANONICAL}}">
     <meta property="og:url" content="{{CANONICAL}}">
@@ -31,6 +31,7 @@
             </pre>
             <p><a href="/">Cloudlord.management</a></p>
             <button type="button" id="mobile-estates-toggle" class="mobile-estates-toggle" aria-expanded="false" aria-controls="estate-navigation">Explore estates +</button>
+            <div class="mobile-window-actions" aria-label="Open Cloudlord windows"><button type="button" class="mobile-panel-toggle" data-panel="messages" aria-expanded="false" aria-controls="messages-window">Messages</button><button type="button" class="mobile-panel-toggle" data-panel="calendar" aria-expanded="false" aria-controls="calendar-window">Calendar</button></div>
             <nav id="estate-navigation" aria-label="Estates and about">
             <button type="button" id="mobile-estates-close" class="mobile-estates-close" aria-label="Close estates">Close ×</button>
             {{NAVIGATION}}
@@ -42,14 +43,14 @@
         {{MAIN}}
 
         <aside class="right-panel">
-            <section class="sidebar-window messages-window" aria-labelledby="messages-title">
-                <p class="sidebar-title" id="messages-title">Messages</p>
+            <section class="sidebar-window messages-window" id="messages-window" aria-labelledby="messages-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="messages-title">Messages</p><button type="button" class="mobile-panel-close" data-panel="messages" aria-label="Close Messages">Close ×</button></div>
                 <div id="message-board">
                     <!-- Messages will be dynamically loaded here -->
                 </div>
             </section>
-            <section class="sidebar-window calendar-window" aria-labelledby="calendar-title">
-                <p class="sidebar-title" id="calendar-title">Calendar</p>
+            <section class="sidebar-window calendar-window" id="calendar-window" aria-labelledby="calendar-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="calendar-title">Calendar</p><button type="button" class="mobile-panel-close" data-panel="calendar" aria-label="Close Calendar">Close ×</button></div>
                 <div id="calendar-board">{{CALENDAR}}</div>
             </section>
         </aside>
