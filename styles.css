@@ -316,3 +316,22 @@ main {
 .calendar-date { font-weight:normal; }
 .calendar-event { margin-top:3px !important; }
 .calendar-role { margin-top:2px !important; }
+
+/* Mobile windows reuse the desktop Messages and Calendar content. */
+.mobile-window-actions, .mobile-panel-close { display:none; }
+.sidebar-window-heading > .sidebar-title { margin-top:0; }
+@media (max-width:768px) {
+  .mobile-window-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:0 auto 12px; }
+  .mobile-panel-toggle { padding:10px 15px; background:transparent; color:var(--text-color); border:1px solid currentColor; font:inherit; cursor:pointer; }
+  .right-panel { display:block; position:static; width:0; height:0; padding:0; margin:0; border:0; overflow:visible; }
+  .right-panel .sidebar-window { display:none; position:fixed; z-index:1002; inset:65px 12px max(16px, env(safe-area-inset-bottom)); width:auto; height:auto; box-sizing:border-box; overflow-y:auto; overscroll-behavior:contain; background:var(--bg-color); color:var(--text-color); border:1px solid var(--text-color); box-shadow:5px 5px 0 var(--text-color); padding:16px 20px 24px; }
+  body[data-mobile-panel="messages"] #messages-window,
+  body[data-mobile-panel="calendar"] #calendar-window { display:block; }
+  .mobile-panel-close { display:block; margin:0 0 0 auto; border:0; background:transparent; color:inherit; font:inherit; text-decoration:underline; cursor:pointer; }
+  .sidebar-window-heading { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; }
+  .sidebar-window-heading > .sidebar-title { margin:0; font-size:16px; }
+  .right-panel .message-title, .right-panel .message p, .right-panel .timestamp,
+  .right-panel .calendar-entry p { font-size:14px; line-height:1.5; }
+  .right-panel .calendar-entry { margin-bottom:24px; }
+  body.mobile-panel-open { overflow:hidden; }
+}
