@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load Are.na messages for the right panel
     let messagesStarted = false;
     function loadMessagesIfVisible() {
-        if (messagesStarted || !messageBoard || !window.matchMedia("(min-width: 769px)").matches) return;
+        if (messagesStarted || !messageBoard || !(window.matchMedia("(min-width: 769px)").matches || document.body.dataset.mobilePanel === "messages")) return;
         messagesStarted = true;
         fetch(ARENA_API_URL)
         .then(response => {
@@ -158,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loadMessagesIfVisible();
     window.matchMedia('(min-width: 769px)').addEventListener('change', loadMessagesIfVisible);
+    document.querySelector('.mobile-panel-toggle[data-panel="messages"]')?.addEventListener('click', loadMessagesIfVisible);
 
 
 });
