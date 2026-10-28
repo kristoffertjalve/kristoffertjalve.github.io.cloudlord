@@ -275,7 +275,19 @@ main {
   .main-text { padding:12px 0 20px; font-size:14px; line-height:1.5; max-width:55ch; }
   .home-intro { padding-top:14px; }
   main > p[align="left"] { margin:8px 0; }
-  #ChiaHouse { display:block; width:100% !important; max-width:100%; min-height:0 !important; height: min(70vh, 540px); }
+  /* Render Chia's desktop-sized interior at 40% on small screens.
+     Transforming the iframe itself works across origins; its inner document
+     cannot be resized directly from Cloudlord. */
+  main > p[align="left"] { width:100%; height:520px; overflow:hidden; }
+  #ChiaHouse {
+    display:block;
+    width:250% !important;
+    max-width:none;
+    height:1300px;
+    min-height:0 !important;
+    transform:scale(.4);
+    transform-origin:top left;
+  }
   .estate-page h1 { font-size:14px; }
   .mobile-back-link { display:none; }
 }
