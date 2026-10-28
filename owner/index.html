@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owner — Cloudlord.management</title>
-    <link rel="stylesheet" href="/styles.css?v=calendar-windows-20261028">
+    <link rel="stylesheet" href="/styles.css?v=mobile-panels-20261028">
     
     <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script defer src="/script.js?v=context-cursors-20261028"></script>
+    <script defer src="/script.js?v=mobile-messages-20261028"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="47956f49-3450-4744-95fa-f135a8890f68"></script>
-    <script defer src="/estate-router.js?v=mobile-window-20261028"></script>
+    <script defer src="/estate-router.js?v=mobile-panels-20261028"></script>
     <meta name="description" content="Kristoffer Tjalve is an independent organizer and curator, and the owner-operator of Cloudlord.management, an internet surreal estate holding company. Work">
     <link rel="canonical" href="https://cloudlord.management/owner/">
     <meta property="og:url" content="https://cloudlord.management/owner/">
@@ -31,6 +31,7 @@
             </pre>
             <p><a href="/">Cloudlord.management</a></p>
             <button type="button" id="mobile-estates-toggle" class="mobile-estates-toggle" aria-expanded="false" aria-controls="estate-navigation">Explore estates +</button>
+            <div class="mobile-window-actions" aria-label="Open Cloudlord windows"><button type="button" class="mobile-panel-toggle" data-panel="messages" aria-expanded="false" aria-controls="messages-window">Messages</button><button type="button" class="mobile-panel-toggle" data-panel="calendar" aria-expanded="false" aria-controls="calendar-window">Calendar</button></div>
             <nav id="estate-navigation" aria-label="Estates and about">
             <button type="button" id="mobile-estates-close" class="mobile-estates-close" aria-label="Close estates">Close ×</button>
             <p class="sidebar-title">Domains</p><ul>
@@ -59,14 +60,14 @@
         <main><article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><h1>Owner</h1><div>Kristoffer Tjalve is an independent organizer and curator, and the owner-operator of Cloudlord.management, an internet surreal estate holding company. Working from his studio in Athens, Greece, he develops projects that explore the web as a medium and material.<br><br>He is behind the Internet Phone Book, a printed directory for exploring the personal web; Tiny Awards, an annual celebration of small and handmade websites; Naive Weekly, an ongoing publication documenting people, places, and projects across the poetic web; and Naive Yearly, a gathering for practitioners expanding what the web is and can be.<br><br>Across websites, awards, gatherings, and printed publications, his practice is less concerned with defining what the web should be than with creating conditions for new possibilities to emerge.</div></article></main>
 
         <aside class="right-panel">
-            <section class="sidebar-window messages-window" aria-labelledby="messages-title">
-                <p class="sidebar-title" id="messages-title">Messages</p>
+            <section class="sidebar-window messages-window" id="messages-window" aria-labelledby="messages-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="messages-title">Messages</p><button type="button" class="mobile-panel-close" data-panel="messages" aria-label="Close Messages">Close ×</button></div>
                 <div id="message-board">
                     <!-- Messages will be dynamically loaded here -->
                 </div>
             </section>
-            <section class="sidebar-window calendar-window" aria-labelledby="calendar-title">
-                <p class="sidebar-title" id="calendar-title">Calendar</p>
+            <section class="sidebar-window calendar-window" id="calendar-window" aria-labelledby="calendar-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="calendar-title">Calendar</p><button type="button" class="mobile-panel-close" data-panel="calendar" aria-label="Close Calendar">Close ×</button></div>
                 <div id="calendar-board"><div class="calendar-entry"><p class="calendar-date">January 28–31 · Berlin</p><p class="calendar-event">Transmediale</p><p class="calendar-role">Speaking and moderating</p></div>\n<div class="calendar-entry"><p class="calendar-date">March 4–7 · Ljubljana</p><p class="calendar-event">Parameter</p><p class="calendar-role">Jury</p></div>\n<div class="calendar-entry"><p class="calendar-date">April 16 · Athens</p><p class="calendar-event">Naive Yearly</p><p class="calendar-role">Hosting</p></div></div>
             </section>
         </aside>

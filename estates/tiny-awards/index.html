@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tinyawards.net — Cloudlord.management</title>
-    <link rel="stylesheet" href="/styles.css?v=calendar-windows-20261028">
+    <link rel="stylesheet" href="/styles.css?v=mobile-panels-20261028">
     
     <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script defer src="/script.js?v=context-cursors-20261028"></script>
+    <script defer src="/script.js?v=mobile-messages-20261028"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="47956f49-3450-4744-95fa-f135a8890f68"></script>
-    <script defer src="/estate-router.js?v=mobile-window-20261028"></script>
+    <script defer src="/estate-router.js?v=mobile-panels-20261028"></script>
     <meta name="description" content="An annual celebration of small, poetic, creative, handmade websites, recognizing independent web projects through public nominations and voting.">
     <link rel="canonical" href="https://cloudlord.management/estates/tiny-awards/">
     <meta property="og:url" content="https://cloudlord.management/estates/tiny-awards/">
@@ -31,6 +31,7 @@
             </pre>
             <p><a href="/">Cloudlord.management</a></p>
             <button type="button" id="mobile-estates-toggle" class="mobile-estates-toggle" aria-expanded="false" aria-controls="estate-navigation">Explore estates +</button>
+            <div class="mobile-window-actions" aria-label="Open Cloudlord windows"><button type="button" class="mobile-panel-toggle" data-panel="messages" aria-expanded="false" aria-controls="messages-window">Messages</button><button type="button" class="mobile-panel-toggle" data-panel="calendar" aria-expanded="false" aria-controls="calendar-window">Calendar</button></div>
             <nav id="estate-navigation" aria-label="Estates and about">
             <button type="button" id="mobile-estates-close" class="mobile-estates-close" aria-label="Close estates">Close ×</button>
             <p class="sidebar-title">Domains</p><ul>
@@ -59,14 +60,14 @@
         <main><article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><h1>Tinyawards.net</h1><div><a href="https://tinyawards.net/" target="_blank" rel="noopener noreferrer">Tinyawards.net</a> is an annual celebration of the small, poetic, creative, handmade web.<br><br>Founded in 2023, the Tiny Awards recognize personal, non-commercial websites that might otherwise be overlooked by more traditional awards. They celebrate people making things for the web out of curiosity, imagination, and the simple pleasure of making something.<br><br>Each year, anyone can nominate a website created in the previous twelve months. A selection committee chooses a shortlist, and the wider internet votes for its favourite. The winner receives a small cash prize and a handmade trophy, created by a different artist each year.<br><br><u>Past winners</u><br><br>2026 — Cursor Camp, by Neal Agarwal. A multiplayer summer camp for cursors, full of games, toys, and unexpected encounters.<br>2025 — Fifty Thousand Names, by Leo Scarin. A digital memorial to Palestinians killed in Gaza, giving individual names and lives a place beyond the headlines.<br>2024 — One Minute Park, by Elliott Cost. A collection of one-minute visits to parks and green spaces around the world.<br>2023 — Rotating Sandwiches, by Lauren Walker. A website dedicated to photographs of sandwiches, slowly rotating.<br><br>Organized with <a href="https://kleinkleinklein.com/" target="_blank" rel="noopener noreferrer">Matt Klein</a> and <a href="https://webcurios.co.uk/" target="_blank" rel="noopener noreferrer">Matt Muir</a>.</div></article></main>
 
         <aside class="right-panel">
-            <section class="sidebar-window messages-window" aria-labelledby="messages-title">
-                <p class="sidebar-title" id="messages-title">Messages</p>
+            <section class="sidebar-window messages-window" id="messages-window" aria-labelledby="messages-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="messages-title">Messages</p><button type="button" class="mobile-panel-close" data-panel="messages" aria-label="Close Messages">Close ×</button></div>
                 <div id="message-board">
                     <!-- Messages will be dynamically loaded here -->
                 </div>
             </section>
-            <section class="sidebar-window calendar-window" aria-labelledby="calendar-title">
-                <p class="sidebar-title" id="calendar-title">Calendar</p>
+            <section class="sidebar-window calendar-window" id="calendar-window" aria-labelledby="calendar-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="calendar-title">Calendar</p><button type="button" class="mobile-panel-close" data-panel="calendar" aria-label="Close Calendar">Close ×</button></div>
                 <div id="calendar-board"><div class="calendar-entry"><p class="calendar-date">January 28–31 · Berlin</p><p class="calendar-event">Transmediale</p><p class="calendar-role">Speaking and moderating</p></div>\n<div class="calendar-entry"><p class="calendar-date">March 4–7 · Ljubljana</p><p class="calendar-event">Parameter</p><p class="calendar-role">Jury</p></div>\n<div class="calendar-entry"><p class="calendar-date">April 16 · Athens</p><p class="calendar-event">Naive Yearly</p><p class="calendar-role">Hosting</p></div></div>
             </section>
         </aside>

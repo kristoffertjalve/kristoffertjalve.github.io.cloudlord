@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagram.website — Cloudlord.management</title>
-    <link rel="stylesheet" href="/styles.css?v=calendar-windows-20261028">
+    <link rel="stylesheet" href="/styles.css?v=mobile-panels-20261028">
     
     <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script defer src="/script.js?v=context-cursors-20261028"></script>
+    <script defer src="/script.js?v=mobile-messages-20261028"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="47956f49-3450-4744-95fa-f135a8890f68"></script>
-    <script defer src="/estate-router.js?v=mobile-window-20261028"></script>
+    <script defer src="/estate-router.js?v=mobile-panels-20261028"></script>
     <meta name="description" content="A curated map of over 200 links exploring internet philosophies, independent web culture, and alternative ways of navigating the internet.">
     <link rel="canonical" href="https://cloudlord.management/estates/diagram-website/">
     <meta property="og:url" content="https://cloudlord.management/estates/diagram-website/">
@@ -31,6 +31,7 @@
             </pre>
             <p><a href="/">Cloudlord.management</a></p>
             <button type="button" id="mobile-estates-toggle" class="mobile-estates-toggle" aria-expanded="false" aria-controls="estate-navigation">Explore estates +</button>
+            <div class="mobile-window-actions" aria-label="Open Cloudlord windows"><button type="button" class="mobile-panel-toggle" data-panel="messages" aria-expanded="false" aria-controls="messages-window">Messages</button><button type="button" class="mobile-panel-toggle" data-panel="calendar" aria-expanded="false" aria-controls="calendar-window">Calendar</button></div>
             <nav id="estate-navigation" aria-label="Estates and about">
             <button type="button" id="mobile-estates-close" class="mobile-estates-close" aria-label="Close estates">Close ×</button>
             <p class="sidebar-title">Domains</p><ul>
@@ -59,14 +60,14 @@
         <main><article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><h1>Diagram.website</h1><div><a href="https://diagram.website" target="_blank" rel="noopener noreferrer">Diagram.website</a> is an internet map and my curatorial landscape, gathering more than 200 links to different internet philosophies, movements, and ways of inhabiting the web.<br><br>I imagine it as the starry night in a remote area, far from the artificial light of the city. When we are caught inside social media, it can be difficult to see the depth and scale of the internet, just as the universe becomes almost invisible beneath the lights of an urban environment. Diagram is an invitation to look up again, to discover unfamiliar constellations, and to remember that the internet is much larger than the small part we visit every day.<br><br>I believe handmade maps offer an intriguing alternative to the ways we are usually asked to navigate space. They are not trying to make a 1:1 representation of reality, nor do they promise the shortest route between two points. Instead, they carry the memory of walks that were important, encounters worth remembering, and paths someone felt compelled to share.<br><br>Made in collaboration with <a href="https://elliott.computer/" target="_blank" rel="noopener noreferrer">Elliott Cost</a>.</div></article></main>
 
         <aside class="right-panel">
-            <section class="sidebar-window messages-window" aria-labelledby="messages-title">
-                <p class="sidebar-title" id="messages-title">Messages</p>
+            <section class="sidebar-window messages-window" id="messages-window" aria-labelledby="messages-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="messages-title">Messages</p><button type="button" class="mobile-panel-close" data-panel="messages" aria-label="Close Messages">Close ×</button></div>
                 <div id="message-board">
                     <!-- Messages will be dynamically loaded here -->
                 </div>
             </section>
-            <section class="sidebar-window calendar-window" aria-labelledby="calendar-title">
-                <p class="sidebar-title" id="calendar-title">Calendar</p>
+            <section class="sidebar-window calendar-window" id="calendar-window" aria-labelledby="calendar-title">
+                <div class="sidebar-window-heading"><p class="sidebar-title" id="calendar-title">Calendar</p><button type="button" class="mobile-panel-close" data-panel="calendar" aria-label="Close Calendar">Close ×</button></div>
                 <div id="calendar-board"><div class="calendar-entry"><p class="calendar-date">January 28–31 · Berlin</p><p class="calendar-event">Transmediale</p><p class="calendar-role">Speaking and moderating</p></div>\n<div class="calendar-entry"><p class="calendar-date">March 4–7 · Ljubljana</p><p class="calendar-event">Parameter</p><p class="calendar-role">Jury</p></div>\n<div class="calendar-entry"><p class="calendar-date">April 16 · Athens</p><p class="calendar-event">Naive Yearly</p><p class="calendar-role">Hosting</p></div></div>
             </section>
         </aside>
