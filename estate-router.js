@@ -56,7 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
       panel.setAttribute('aria-modal', 'true');
       panel.setAttribute('aria-hidden', String(!open || panel.id !== name + '-window'));
     });
-    if (open) document.querySelector('.mobile-panel-close[data-panel="' + name + '"]')?.focus();
+    if (open) {
+      document.querySelector('.mobile-panel-close[data-panel="' + name + '"]')?.focus();
+      document.dispatchEvent(new CustomEvent('cloudlord:panel-open', {detail:{panel:name}}));
+    }
     else if (previousFocus?.isConnected) previousFocus.focus();
   }
   panelButtons.forEach(button => button.addEventListener('click', () => {
