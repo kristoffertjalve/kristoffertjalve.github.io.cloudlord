@@ -255,3 +255,27 @@ main {
 .left-panel li[data-about] > a[aria-current="page"] { text-decoration: underline; }
 .left-panel li[data-estate] > a:focus-visible,
 .left-panel li[data-about] > a:focus-visible { outline: 2px solid var(--text-color); outline-offset: 2px; }
+
+/* Mobile estate window: keep the original three-column desktop layout intact. */
+.mobile-estates-toggle, .mobile-estates-close { display:none; }
+@media (max-width:768px) {
+  .container { display:flex; flex-direction:column; min-height:100svh; height:auto; }
+  .left-panel { margin:0; padding:22px 16px 8px; width:100%; box-sizing:border-box; font-size:14px; line-height:1.35; }
+  .left-panel pre { margin-bottom:12px; }
+  .left-panel > p { max-width:32ch; margin:0 auto 14px; }
+  .left-panel > br, .left-panel > iframe { display:none; }
+  .mobile-estates-toggle { display:block; margin:4px auto 8px; padding:10px 18px; background:transparent; color:var(--text-color); border:1px solid currentColor; font:inherit; cursor:pointer; }
+  #estate-navigation { display:none; position:fixed; z-index:1001; inset:65px 12px max(16px, env(safe-area-inset-bottom)); overflow-y:auto; overscroll-behavior:contain; background:var(--bg-color); color:var(--text-color); border:1px solid var(--text-color); box-shadow:5px 5px 0 var(--text-color); padding:16px 20px 24px; text-align:center; }
+  .mobile-menu-open #estate-navigation { display:block; }
+  .mobile-estates-close { display:block; margin:0 0 16px auto; border:0; background:transparent; color:inherit; font:inherit; text-decoration:underline; cursor:pointer; }
+  #estate-navigation ul { margin:10px 0 20px; line-height:1.55; }
+  #estate-navigation a { overflow-wrap:anywhere; }
+  body.mobile-menu-open { overflow:hidden; }
+  main { width:100%; min-width:0; padding:0 16px 32px; box-sizing:border-box; font-size:14px; }
+  .main-text { padding:12px 0 20px; font-size:14px; line-height:1.5; max-width:55ch; }
+  .home-intro { padding-top:14px; }
+  main > p[align="left"] { margin:8px 0; }
+  #ChiaHouse { display:block; width:100% !important; max-width:100%; min-height:0 !important; height: min(70vh, 540px); }
+  .estate-page h1 { font-size:14px; }
+  .mobile-back-link { display:none; }
+}
