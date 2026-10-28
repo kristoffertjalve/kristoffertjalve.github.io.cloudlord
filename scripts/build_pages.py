@@ -86,7 +86,8 @@ def build():
             main = '<main><article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><h1>' + html.escape(heading) + '</h1><div>' + render_markdown(markdown) + '</div></article></main>'
             body_attr = f' data-{"estate" if kind == "estates" else "about"}-page="{slug}"'
         else:
-            main = '<main><p align="left"><iframe id="ChiaHouse" title="Chia House" src="https://las-pinas.com/h.html?i=kristoffer" style="width:50vw;min-height:600px;border:none;overflow:scroll" houseid="kristoffer"></iframe></p></main>'
+            intro = render_markdown((ROOT / "content/home.md").read_text(encoding="utf-8"))
+            main = '<main><article class="main-text home-intro">' + intro + '</article><p align="left"><iframe id="ChiaHouse" title="Chia House" src="https://las-pinas.com/h.html?i=kristoffer" style="width:50vw;min-height:600px;border:none;overflow:scroll" houseid="kristoffer"></iframe></p></main>'
             body_attr = ""
         person_id = BASE + "/owner/#person"
         website_id = BASE + "/#website"
