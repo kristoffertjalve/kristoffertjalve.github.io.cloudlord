@@ -302,3 +302,17 @@ main {
   [id*="flood"], [class*="flood"], [id*="leak"], [class*="leak"],
   [id*="flood"] *, [class*="flood"] *, [id*="leak"] *, [class*="leak"] * { cursor:revert !important; }
 }
+
+/* Two independently scrollable windows in the desktop right column. */
+@media (min-width:769px) {
+  .right-panel { display:flex; flex-direction:column; overflow:hidden; min-height:0; }
+  .sidebar-window { min-height:0; overflow-y:auto; scrollbar-width:thin; }
+  .messages-window { flex:1 1 60%; padding-bottom:12px; }
+  .calendar-window { flex:1 1 40%; border-top:2px double var(--border-color); padding-top:12px; }
+  .sidebar-window > .sidebar-title { margin-top:0; }
+}
+.calendar-entry { margin:0 0 18px; }
+.calendar-entry p { margin:0; font-size:11px; line-height:1.35; }
+.calendar-date { font-weight:normal; }
+.calendar-event { margin-top:3px !important; }
+.calendar-role { margin-top:2px !important; }
