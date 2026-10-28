@@ -1,3 +1,1 @@
-Cloudlord.management is a collection of websites, publications, gatherings, and experiments by Kristoffer Tjalve and friends.
-
-Working with the web as a medium and material, these projects explore its possibilities for creative expression, curiosity, and connection. Less concerned with defining what the web should be than with creating conditions for new possibilities to emerge.
+Cloudlord.management is an internet surreal estate holding company. It is the home for the websites, publications, gatherings, and experiments by Kristoffer Tjalve and collaborators. Common across the projects is the dedication to the web as a medium and material, and a wish to expand the possibilities of what the internet is and can be.
