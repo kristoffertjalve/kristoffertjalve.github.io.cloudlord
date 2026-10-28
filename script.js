@@ -158,7 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loadMessagesIfVisible();
     window.matchMedia('(min-width: 769px)').addEventListener('change', loadMessagesIfVisible);
-    document.querySelector('.mobile-panel-toggle[data-panel="messages"]')?.addEventListener('click', loadMessagesIfVisible);
+    document.addEventListener('cloudlord:panel-open', event => {
+        if (event.detail.panel === 'messages') loadMessagesIfVisible();
+    });
 
 
 });
