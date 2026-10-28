@@ -81,6 +81,18 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len({(kind, entry["slug"]) for kind, entry, _ in manifest}), len(manifest))
         self.assertTrue(all(markdown.strip() for _, _, markdown in manifest))
 
+    def test_calendar_renders_all_entries_including_old_events(self):
+        calendar = (ROOT / "content/calendar.md").read_text(encoding="utf-8")
+        rendered = build_pages.render_calendar(calendar)
+        self.assertEqual(rendered.count('class="calendar-entry"'), 3)
+        self.assertIn("Transmediale", rendered)
+        self.assertIn("Parameter", rendered)
+        self.assertIn("Naive Yearly", rendered)
+        self.assertLess(rendered.index("Transmediale"), rendered.index("Parameter"))
+        self.assertLess(rendered.index("Parameter"), rendered.index("Naive Yearly"))
+        with self.assertRaises(ValueError):
+            build_pages.render_calendar("Incomplete entry")
+
     def test_performance_loading_guards(self):
         template = (ROOT / "templates/page.html").read_text(encoding="utf-8")
         script = (ROOT / "script.js").read_text(encoding="utf-8")
