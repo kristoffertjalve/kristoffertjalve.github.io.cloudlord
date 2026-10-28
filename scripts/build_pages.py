@@ -34,7 +34,7 @@ def render_markdown(value):
 def render_calendar(value):
     """Render calendar entries in their editorial order, including past dates."""
     events = []
-    for block in re.split(r"\\n\\s*\\n", value.strip()):
+    for block in re.split(r"\n\s*\n", value.strip()):
         lines = [line.strip() for line in block.splitlines() if line.strip()]
         if len(lines) != 3:
             raise ValueError("Calendar entries require date/place, event and role lines")
