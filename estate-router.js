@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutLinks = [...document.querySelectorAll('li[data-about]')];
   const aboutMap = new Map(aboutLinks.map(item => [item.dataset.about, item]));
   if (!main || !estateLinks.length) return;
-  const homeHTML = '<p align="left"><iframe id="ChiaHouse" title="Chia House" src="https://las-pinas.com/h.html?i=kristoffer" style="width:50vw;min-height:600px;border:none;overflow:scroll" houseid="kristoffer"></iframe></p>';
+  const homeHTML = main.innerHTML;
   const estateMap = new Map(estateLinks.map(item => [item.dataset.estate, item]));
   const homeTitle = 'Cloudlord.management';
   const homeMetadata = {title: homeTitle, description: 'An internet surreal estate holding company.', canonical: 'https://cloudlord.management/'};
@@ -28,6 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
       schema.textContent = JSON.stringify(structured).replace(/</g, '\\u003c');
     }
   }
+  const toggle = document.getElementById('mobile-estates-toggle');
+  const close = document.getElementById('mobile-estates-close');
+  const menu = document.getElementById('estate-navigation');
+  function setMenu(open) {
+    document.body.classList.toggle('mobile-menu-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    if (open) close?.focus();
+    else if (menu?.contains(document.activeElement)) toggle?.focus();
+  }
+  toggle?.addEventListener('click', () => setMenu(!document.body.classList.contains('mobile-menu-open')));
+  close?.addEventListener('click', () => setMenu(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   const mobile = () => matchMedia('(max-width: 768px)').matches;
   function render(slug) {
     const item = estateMap.get(slug) || aboutMap.get(slug);
@@ -58,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.addEventListener('click', event => {
       // Preserve normal link behavior for modifier clicks, new tabs and downloads.
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || anchor.hasAttribute('download')) return;
+      if (mobile()) return; // Native navigation preserves the page's pre-rendered JSON-LD.
       event.preventDefault();
       const slug = item.dataset.estate || item.dataset.about;
       const path = anchor.getAttribute('href');
