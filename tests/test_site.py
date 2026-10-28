@@ -98,7 +98,9 @@ class SiteTests(unittest.TestCase):
         self.assertIn("popstate", router)
         self.assertIn("main.scrollIntoView", router)
         self.assertNotIn("stopImmediatePropagation", router)
-        self.assertNotIn("addEventListener('keydown'", router)
+        self.assertIn("addEventListener('keydown'", router)
+        self.assertIn("e.key === 'Escape'", router)
+        self.assertIn("setMenu(false)", router)
 
 
 if __name__ == "__main__":
