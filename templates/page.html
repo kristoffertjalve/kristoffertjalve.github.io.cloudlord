@@ -9,7 +9,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script defer src="/script.js?v=performance-20261027"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="47956f49-3450-4744-95fa-f135a8890f68"></script>
-    <script defer src="/estate-router.js?v=markdown-manifest-20261026"></script>
+    <script defer src="/estate-router.js?v=mobile-window-20261028"></script>
     <meta name="description" content="{{DESCRIPTION}}">
     <link rel="canonical" href="{{CANONICAL}}">
     <meta property="og:url" content="{{CANONICAL}}">
@@ -30,7 +30,11 @@
 |_|_|I|_|_|
             </pre>
             <p><a href="/">Cloudlord.management</a> is an internet surreal estate holding company.</p>
+            <button type="button" id="mobile-estates-toggle" class="mobile-estates-toggle" aria-expanded="false" aria-controls="estate-navigation">Explore estates +</button>
+            <nav id="estate-navigation" aria-label="Estates and about">
+            <button type="button" id="mobile-estates-close" class="mobile-estates-close" aria-label="Close estates">Close ×</button>
             {{NAVIGATION}}
+            </nav>
             <br><br><br>
             <iframe title="Internet Phone Book dial-a-site badge" loading="lazy" src="https://internetphonebook.net/badges/dial-a-site-badge.html?number=585&size=small" width="228" height="54" frameborder="0" style="border: 1px solid #000;"></iframe>
             <button id="dark-mode-toggle" class="dark-mode-toggle">🟢 </button>
