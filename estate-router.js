@@ -40,6 +40,45 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle?.addEventListener('click', () => setMenu(!document.body.classList.contains('mobile-menu-open')));
   close?.addEventListener('click', () => setMenu(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  const panelButtons = [...document.querySelectorAll('.mobile-panel-toggle')];
+  const panelWindows = [...document.querySelectorAll('.right-panel .sidebar-window')];
+  let previousFocus = null;
+  function setPanel(name) {
+    const open = name === 'messages' || name === 'calendar';
+    if (open && !document.body.dataset.mobilePanel) previousFocus = document.activeElement;
+    if (open) setMenu(false);
+    document.body.classList.toggle('mobile-panel-open', open);
+    if (open) document.body.dataset.mobilePanel = name;
+    else delete document.body.dataset.mobilePanel;
+    panelButtons.forEach(button => button.setAttribute('aria-expanded', String(open && button.dataset.panel === name)));
+    panelWindows.forEach(panel => {
+      panel.setAttribute('role', 'dialog');
+      panel.setAttribute('aria-modal', 'true');
+      panel.setAttribute('aria-hidden', String(!open || panel.id !== name + '-window'));
+    });
+    if (open) {
+      document.querySelector('.mobile-panel-close[data-panel="' + name + '"]')?.focus();
+      document.dispatchEvent(new CustomEvent('cloudlord:panel-open', {detail:{panel:name}}));
+    }
+    else if (previousFocus?.isConnected) previousFocus.focus();
+  }
+  panelButtons.forEach(button => button.addEventListener('click', () => {
+    setPanel(document.body.dataset.mobilePanel === button.dataset.panel ? null : button.dataset.panel);
+  }));
+  document.querySelectorAll('.mobile-panel-close').forEach(button => button.addEventListener('click', () => setPanel(null)));
+  document.addEventListener('keydown', e => {
+    if (!document.body.classList.contains('mobile-panel-open')) return;
+    if (e.key === 'Escape') setPanel(null);
+    if (e.key !== 'Tab') return;
+    const panel = document.getElementById(document.body.dataset.mobilePanel + '-window');
+    const focusable = [...panel.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]')].filter(el => el.getClientRects().length);
+    if (!focusable.length) return;
+    if (e.shiftKey && document.activeElement === focusable[0]) { e.preventDefault(); focusable[focusable.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === focusable[focusable.length - 1]) { e.preventDefault(); focusable[0].focus(); }
+  });
+  document.addEventListener('click', e => {
+    if (e.target.closest('.right-panel a[href]')) setPanel(null);
+  });
   const mobile = () => matchMedia('(max-width: 768px)').matches;
   function render(slug) {
     const item = estateMap.get(slug) || aboutMap.get(slug);
