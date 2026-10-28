@@ -44,7 +44,7 @@ test('mobile estate, messages and calendar windows', async ({ browser }) => {
   await page.locator('#mobile-estates-toggle').click();
   await expect(page.locator('#estate-navigation')).toBeVisible();
   await page.locator('li[data-estate="tiny-awards"] a').click();
-  await expect(page).toHaveURL(/\\/estates\\/tiny-awards\\/$/);
+  await expect(page).toHaveURL(base + '/estates/tiny-awards/');
   await expect(page.locator('main h1')).toHaveText('Tinyawards.net');
   await context.close();
 });
