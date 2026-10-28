@@ -291,3 +291,14 @@ main {
   .estate-page h1 { font-size:14px; }
   .mobile-back-link { display:none; }
 }
+
+/* Tuck the house closer to the homepage copy on desktop. */
+@media (min-width:769px) {
+  main:has(.home-intro) > p[align="left"] { margin-top:-85px; }
+}
+/* Native hand over links; defer to the leaking webring's cursor. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  a, button, [role="button"], a *, button *, [role="button"] * { cursor:pointer !important; }
+  [id*="flood"], [class*="flood"], [id*="leak"], [class*="leak"],
+  [id*="flood"] *, [class*="flood"] *, [id*="leak"] *, [class*="leak"] * { cursor:revert !important; }
+}
