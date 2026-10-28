@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', (event) => {
         mouseX = event.clientX;
         mouseY = event.clientY;
+        const target = document.elementFromPoint(mouseX, mouseY);
+        const interactive = target?.closest('a, button, [role="button"], input, select, textarea, summary');
+        const leak = target?.closest('[id*="flood"], [class*="flood"], [id*="leak"], [class*="leak"]');
+        fruitfly.style.visibility = interactive || leak ? 'hidden' : 'visible';
     });
 
     let flyFrame = null;
