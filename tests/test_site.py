@@ -84,12 +84,16 @@ class SiteTests(unittest.TestCase):
     def test_calendar_renders_all_entries_including_old_events(self):
         calendar = (ROOT / "content/calendar.md").read_text(encoding="utf-8")
         rendered = build_pages.render_calendar(calendar)
-        self.assertEqual(rendered.count('class="calendar-entry"'), 3)
+        self.assertEqual(rendered.count('class="calendar-entry"'), 8)
         self.assertNotIn(r"\n", rendered)
         self.assertIn("\n<div", rendered)
         self.assertIn("Transmediale", rendered)
         self.assertIn("Parameter", rendered)
         self.assertIn("Naive Yearly", rendered)
+        self.assertIn('class="calendar-section-title">Past</h3>', rendered)
+        self.assertIn("Birdcall", rendered)
+        self.assertLess(rendered.index("Naive Yearly"), rendered.index("Past"))
+        self.assertLess(rendered.index("Internet Archive Europe"), rendered.index("Birdcall"))
         self.assertLess(rendered.index("Transmediale"), rendered.index("Parameter"))
         self.assertLess(rendered.index("Parameter"), rendered.index("Naive Yearly"))
         with self.assertRaises(ValueError):

@@ -36,6 +36,9 @@ def render_calendar(value):
     events = []
     for block in re.split(r"\n\s*\n", value.strip()):
         lines = [line.strip() for line in block.splitlines() if line.strip()]
+        if len(lines) == 1 and lines[0] == "## Past":
+            events.append('<h3 class="calendar-section-title">Past</h3>')
+            continue
         if len(lines) != 3:
             raise ValueError("Calendar entries require date/place, event and role lines")
         date_place, event, role = lines
