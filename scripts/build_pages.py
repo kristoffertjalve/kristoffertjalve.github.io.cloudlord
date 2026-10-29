@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 MANIFEST = ROOT / "content/manifest.json"
 BASE = "https://cloudlord.management"
-HOME_DESCRIPTION = "An internet surreal estate holding company."
+HOME_DESCRIPTION = "Cloudlord.management is Kristoffer Tjalve’s collection of independent websites, publications, gatherings and experiments exploring the creative web."
 
 def render_links(value):
     def replace(m):
@@ -86,7 +86,7 @@ def build():
     metadata = {"/": {"title": "Cloudlord.management", "description": HOME_DESCRIPTION, "canonical": BASE + "/"}}
     for kind, entry, markdown in entries:
         url = f"/estates/{entry['slug']}/" if kind == "estates" else f"/{entry['slug']}/"
-        metadata[url] = {"title": entry["title"] + " — Cloudlord.management", "description": entry.get("description") or plain_description(markdown), "canonical": BASE + url}
+        metadata[url] = {"title": entry.get("seoTitle", entry["title"]) + " — Cloudlord.management", "description": entry.get("description") or plain_description(markdown), "canonical": BASE + url}
     # One Markdown link per line; duplicated for a seamless, editable ticker.
     news_items = []
     for line in (ROOT / "content/newsbar.md").read_text(encoding="utf-8").splitlines():
@@ -115,7 +115,7 @@ def build():
     for path, kind, entry, markdown in pages:
         slug = entry["slug"] if entry else None
         heading = entry["title"] if entry else ""
-        title = heading + " — Cloudlord.management" if entry else "Cloudlord.management"
+        title = entry.get("seoTitle", heading) + " — Cloudlord.management" if entry else "Cloudlord.management"
         canonical = BASE + (f"/estates/{slug}/" if kind == "estates" else f"/{slug}/" if kind else "/")
         description = entry.get("description") or plain_description(markdown) if entry else HOME_DESCRIPTION
         if entry:
