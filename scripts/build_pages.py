@@ -27,6 +27,9 @@ def render_markdown(value):
     value = value.strip()
     value = html.escape(value, quote=False)
     value = re.sub(r"__(.+?)__", r"<u>\1</u>", value)
+    value = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", value)
+    value = re.sub(r"!\[([^\]]*)\]\((/images/[a-zA-Z0-9._-]+\.(?:webp|jpg|jpeg|png))\)",
+                   lambda m: '<img class="owner-photo" src="' + html.escape(m.group(2), quote=True) + '" alt="' + html.escape(m.group(1), quote=True) + '">', value)
     value = render_links(value)
     return re.sub(r"\n{2,}", "<br><br>", value).replace("\n", "<br>")
 
