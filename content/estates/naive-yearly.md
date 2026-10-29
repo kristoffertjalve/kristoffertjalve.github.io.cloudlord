@@ -1,3 +1,5 @@
+![Lunch from Naive Yearly 2024](/images/naive-yearly.webp)
+
 [Naiveyearly.com](https://naiveyearly.com) is a traveling gathering for the web.
 
 We gather people who expand what the web is and can be. Artists, designers, educators, developers, writers and organizers who avoid nostalgia and technological utopias but use the internet and the open protocols to invite us to see the world anew in the present tense. As such, it is a day of the art of living.
