@@ -752,3 +752,46 @@ main:has(.home-intro) > p[align="left"] { position:relative; z-index:0; }
   .mobile-about-actions, .mobile-window-actions { gap:4px; margin-bottom:4px; }
   .container > main .home-intro { padding:10px 12px; font-size:12px; line-height:1.3; }
 }
+
+/* Mobile: castle precedes the introduction; window buttons meet the frame
+   and one another without gutters. Modal windows cover the controls. */
+.mobile-home-castle { display:none; }
+@media (max-width:768px) {
+  .container > main .mobile-home-castle {
+    display:block;
+    margin:0;
+    padding:12px 0 8px;
+    font:13px/1 monospace;
+    text-align:center;
+    border-bottom:0;
+  }
+  .left-panel > pre { display:none; }
+  .left-panel {
+    padding:0;
+    margin:0;
+  }
+  .left-panel > p { margin:0; padding:8px 0; }
+  .mobile-estates-toggle,
+  .mobile-about-actions a,
+  .mobile-window-actions .mobile-panel-toggle {
+    border-left:0;
+    border-right:0;
+    border-bottom:0;
+    margin:0;
+    border-radius:0;
+  }
+  .mobile-window-actions .mobile-panel-toggle:last-child { border-bottom:2px double #ccc; }
+  .mobile-estates-toggle { margin:0; }
+  .mobile-about-actions, .mobile-window-actions {
+    gap:0;
+    margin:0;
+    padding:0;
+  }
+  #estate-navigation,
+  .right-panel .sidebar-window,
+  body[data-estate-page] .container > main,
+  body[data-about-page] .container > main {
+    inset:12px 12px max(12px, env(safe-area-inset-bottom));
+  }
+  .container > main .estate-page .mobile-home-castle { display:none; }
+}
