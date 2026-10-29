@@ -1,5 +1,7 @@
 ![Kristoffer speaking at Naive Yearly](/images/owner-photo.webp)
 
+Photograph by [Ana Šantl Andersen](https://iamnotana.com)
+
 Kristoffer Tjalve is an independent organizer and curator, and the owner-operator of Cloudlord.management, an internet surreal estate holding company. Working from his studio in Athens, Greece, he develops projects that explore the web as a medium and material.
 
 He is behind the Internet Phone Book, a printed directory for exploring the personal web; Tiny Awards, an annual celebration of small and handmade websites; Naive Weekly, an ongoing publication documenting people, places, and projects across the poetic web; and Naive Yearly, a gathering for practitioners expanding what the web is and can be.
