@@ -80,6 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.closest('.right-panel a[href]')) setPanel(null);
   });
   const mobile = () => matchMedia('(max-width: 768px)').matches;
+  if (mobile() && location.hash === '#estates') {
+    setMenu(true);
+    history.replaceState(history.state, '', location.pathname + location.search);
+  }
+  if (mobile() && document.body.hasAttribute('data-estate-page')) {
+    const fromMenu = sessionStorage.getItem('cloudlord-estates-return') === '1';
+    sessionStorage.removeItem('cloudlord-estates-return');
+    if (fromMenu) main.querySelector('.mobile-back-link')?.setAttribute('href', '/#estates');
+  }
   function render(slug) {
     const item = estateMap.get(slug) || aboutMap.get(slug);
     if (!item) {
@@ -109,7 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.addEventListener('click', event => {
       // Preserve normal link behavior for modifier clicks, new tabs and downloads.
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || anchor.hasAttribute('download')) return;
-      if (mobile()) return; // Native navigation preserves the page's pre-rendered JSON-LD.
+      if (mobile()) {
+        if (item.dataset.estate && document.body.classList.contains('mobile-menu-open')) {
+          sessionStorage.setItem('cloudlord-estates-return', '1');
+        } else {
+          sessionStorage.removeItem('cloudlord-estates-return');
+        }
+        return; // Native navigation preserves the page's pre-rendered JSON-LD.
+      }
       event.preventDefault();
       const slug = item.dataset.estate || item.dataset.about;
       const path = anchor.getAttribute('href');
