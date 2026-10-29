@@ -38,7 +38,7 @@ class PageParser(HTMLParser):
             self.descriptions.append(attrs.get("content"))
         if tag == "a":
             self.links.append(attrs.get("href"))
-            if attrs.get("href") == "#domains":
+            if attrs.get("class") == "mobile-back-link" and attrs.get("href") == "/":
                 self.back_links += 1
             if self.in_estate_navigation and (attrs.get("href", "").startswith("/estates/") or attrs.get("href") in ("/owner/", "/partners/", "/press/", "/contact/")):
                 self.nav_links.append(attrs)
