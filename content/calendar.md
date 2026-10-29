@@ -1,11 +1,11 @@
-January 28–31 · Berlin
-Transmediale
+January 28–31, 2027, Berlin
+[Transmediale](https://transmediale.de/en)
 Speaking and moderating
 
-March 4–7 · Ljubljana
-Parameter
-Jury
+March 4–7, 2027, Ljubljana
+[Parameter](https://wiki.ljudmila.org/Adela_(en))
+Jury member
 
-April 16 · Athens
-Naive Yearly
+April 16, 2027, Athens
+[Naive Yearly](https://naiveyearly.com/)
 Hosting
