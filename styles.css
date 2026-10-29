@@ -530,7 +530,7 @@ main {
 .cursor-mode-toggle { width:32px; height:32px; font:24px/1 monospace; }
 .cursor-mode-toggle img { width:30px; height:30px; object-fit:contain; }
 .cursor-mode-toggle.is-active img { display:none; }
-.cursor-mode-toggle.is-active::after { content:'↖'; }
+.cursor-mode-toggle.is-active::after { content:' '; display:block; width:20px; height:24px; background:var(--text-color); clip-path:polygon(0 0, 0 90%, 26% 69%, 43% 100%, 57% 94%, 40% 65%, 72% 65%); }
 .sidebar-controls button:focus-visible { outline:2px solid var(--text-color); outline-offset:3px; }
 @media (max-width:768px) { .sidebar-controls { justify-content:center; margin-top:14px; } }
 
@@ -558,4 +558,27 @@ main {
 a[href*="melonking.net/free/software/flood"] {
   left:8px !important;
   right:auto !important;
+}
+
+/* Messages: nested generic div margins were creating the extra gap. */
+@media (min-width:769px) {
+  #message-board > .message-container:first-child,
+  #message-board > .message-container:first-child > .message,
+  #message-board > .message-container:first-child .message-title {
+    margin-top:0 !important;
+  }
+  .messages-window > .sidebar-window-heading {
+    margin-bottom:0;
+  }
+}
+.messages-window > .sidebar-window-heading { display:flex; align-items:baseline; gap:8px; }
+.messages-window > .sidebar-window-heading .messages-rss {
+  margin-left:auto;
+  font:normal 11px/1.35 'Inconsolata',monospace;
+  color:var(--text-color);
+  text-decoration:underline;
+}
+@media (max-width:768px) {
+  .messages-window > .sidebar-window-heading .messages-rss { font-size:14px; }
+  .messages-window > .sidebar-window-heading .mobile-panel-close { margin-left:0; }
 }
