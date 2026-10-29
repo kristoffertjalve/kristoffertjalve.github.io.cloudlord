@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutLinks = [...document.querySelectorAll('li[data-about]')];
   const aboutMap = new Map(aboutLinks.map(item => [item.dataset.about, item]));
   if (!main || !estateLinks.length) return;
-  const homeHTML = main.innerHTML;
+  // Direct estate/about permalinks contain their own page, not the homepage.
+  let homeHTML = document.body.hasAttribute('data-estate-page') || document.body.hasAttribute('data-about-page') ? null : main.innerHTML;
   const estateMap = new Map(estateLinks.map(item => [item.dataset.estate, item]));
   const homeTitle = 'Cloudlord.management';
   const homeMetadata = {title: homeTitle, description: 'An internet surreal estate holding company.', canonical: 'https://cloudlord.management/'};
@@ -89,9 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.removeItem('cloudlord-estates-return');
     if (fromMenu) main.querySelector('.mobile-back-link')?.setAttribute('href', '/#estates');
   }
-  function render(slug) {
+  async function render(slug) {
     const item = estateMap.get(slug) || aboutMap.get(slug);
     if (!item) {
+      if (homeHTML === null) {
+        try {
+          const response = await fetch('/', {credentials:'same-origin'});
+          if (!response.ok) throw new Error('Homepage unavailable');
+          const documentHome = new DOMParser().parseFromString(await response.text(), 'text/html');
+          const homeMain = documentHome.querySelector('main');
+          if (!homeMain?.querySelector('.home-intro')) throw new Error('Homepage content missing');
+          homeHTML = homeMain.innerHTML;
+        } catch (error) {
+          location.assign('/');
+          return;
+        }
+      }
       main.innerHTML = homeHTML;
       document.body.removeAttribute('data-estate-page');
       document.body.removeAttribute('data-about-page');
