@@ -343,3 +343,28 @@ main {
 /* Editorial photograph on the Owner page. */
 .owner-photo { display:block; width:100%; height:auto; margin:0; }
 .photo-credit { font-size:0.85em; }
+
+/* Desktop: a double-line frame and three fixed-height, independent columns.
+   Mobile retains its natural page scroll and overlay windows. */
+@media (min-width:769px) {
+  html, body { height:100%; overflow:hidden; }
+  .container {
+    box-sizing:border-box;
+    height:100vh;
+    height:100dvh;
+    width:100%;
+    border:4px double var(--border-color);
+    gap:0;
+    overflow:hidden;
+  }
+  .left-panel, main, .right-panel { box-sizing:border-box; min-width:0; min-height:0; }
+  .left-panel { flex:0 0 20%; width:20%; overflow-y:auto; }
+  main {
+    flex:1 1 60%;
+    width:auto;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+  }
+  .right-panel { flex:0 0 20%; width:20%; }
+}
