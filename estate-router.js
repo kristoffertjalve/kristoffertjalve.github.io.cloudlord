@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   close?.addEventListener('click', () => setMenu(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   const panelButtons = [...document.querySelectorAll('.mobile-panel-toggle')];
-  const panelWindows = [...document.querySelectorAll('.right-panel .sidebar-window')];
+  const panelWindows = [...document.querySelectorAll('.sidebar-window')];
   let previousFocus = null;
   function setPanel(name) {
     const open = name === 'messages' || name === 'calendar' || name === 'photos';
