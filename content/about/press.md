@@ -1,9 +1,3 @@
-Learn more about Kristoffer’s work with the internet:
-
-
-
-
-
                     2026 - Podcast - The New Movement - [Kristoffer Tjalve: Naive Weekly](https://thenewmvt.com/podcast/kristoffer-tjalve-naive-weekly/)
                     2026 - Podcast - Web Weaving - [Episode 10](https://web-weaving.jamesg.blog/10)
                     2025 - Feature - It's Nice That - [The creatives designing a more inspiring internet](https://www.itsnicethat.com/features/forward-thinking-open-your-laptop-digital-creative-industry-120126)
