@@ -87,6 +87,17 @@ def build():
     for kind, entry, markdown in entries:
         url = f"/estates/{entry['slug']}/" if kind == "estates" else f"/{entry['slug']}/"
         metadata[url] = {"title": entry["title"] + " — Cloudlord.management", "description": entry.get("description") or plain_description(markdown), "canonical": BASE + url}
+    # One Markdown link per line; duplicated for a seamless, editable ticker.
+    news_items = []
+    for line in (ROOT / "content/newsbar.md").read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if not re.fullmatch(r"\[[^\]]+\]\(https?://[^)]+\)", line):
+            raise ValueError("News bar entries must be one Markdown link per line")
+        news_items.append('<span class="news-item">' + render_links(html.escape(line, quote=False)) + '</span>')
+    news_group = '<span class="news-group">' + "".join(news_items) + '</span>'
+    news_html = '<div class="news-bar" aria-label="Announcements"><div class="news-track">' + news_group + '<span aria-hidden="true">' + news_group + '</span></div></div>'
     calendar_html = render_calendar((ROOT / "content/calendar.md").read_text(encoding="utf-8"))
     nav = []
     for kind in ("estates", "about"):
@@ -146,6 +157,7 @@ def build():
             "{{MAIN}}": main,
             "{{NAVIGATION}}": nav_html,
             "{{CALENDAR}}": calendar_html,
+            "{{NEWS_BAR}}": news_html,
             "{{SCHEMA}}": schema_json,
         }.items():
             output = output.replace(key, value)
