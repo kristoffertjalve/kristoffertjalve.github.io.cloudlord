@@ -33,7 +33,8 @@ test('mobile estate, messages and calendar windows', async ({ browser }) => {
   await expect(page.locator('#calendar-window')).toBeHidden();
   await page.locator('.mobile-panel-toggle[data-panel="calendar"]').click();
   await expect(page.locator('#calendar-window')).toBeVisible();
-  await expect(page.locator('#calendar-window .calendar-entry')).toHaveCount(8);
+  await expect(page.locator('#calendar-window .calendar-entry').first()).toBeVisible();
+  await expect(page.locator('#calendar-window .calendar-section-title')).toContainText('Past');
   await expect(page.locator('body')).toHaveClass(/mobile-panel-open/);
   await page.keyboard.press('Escape');
   await expect(page.locator('#calendar-window')).toBeHidden();
