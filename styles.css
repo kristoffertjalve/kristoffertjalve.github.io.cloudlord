@@ -568,7 +568,7 @@ a[href*="melonking.net/free/software/flood"] {
     margin-top:0 !important;
   }
   .messages-window > .sidebar-window-heading {
-    margin-bottom:18px;
+    margin-bottom:0;
   }
 }
 .messages-window > .sidebar-window-heading { display:flex; align-items:baseline; gap:8px; }
