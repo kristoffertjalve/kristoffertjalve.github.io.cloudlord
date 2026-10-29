@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const description = item.getAttribute('data-html') || '';
       const heading = document.createElement('h1');
       heading.textContent = item.textContent.trim().replace(' 🆕', '');
-      main.innerHTML = '<article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><div>' + description + '</div></article>';
+      main.innerHTML = '<article class="main-text estate-page"><a class="mobile-back-link" href="/">Close ×</a><div>' + description + '</div></article>';
       main.querySelector('article').prepend(heading);
       if (aboutMap.has(slug)) {document.body.dataset.aboutPage = slug;document.body.removeAttribute('data-estate-page');} else {document.body.dataset.estatePage = slug;document.body.removeAttribute('data-about-page');}
       document.title = heading.textContent + ' — Cloudlord.management';
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const match = location.pathname.match(/^\/estates\/([^/]+)\/?$/);
   if (match && estateMap.has(match[1])) render(match[1]);
   else if (aboutMap.has(location.pathname.split('/')[1])) render(location.pathname.split('/')[1]);
-  // Direct mobile permalinks open at their description; home opens at the domain list.
+  // Direct mobile permalinks appear as closable overlays; preserve their real URLs.
   if (mobile() && (document.body.hasAttribute('data-estate-page') || document.body.hasAttribute('data-about-page'))) {
     requestAnimationFrame(() => main.scrollIntoView({behavior: 'auto', block: 'start'}));
   }
