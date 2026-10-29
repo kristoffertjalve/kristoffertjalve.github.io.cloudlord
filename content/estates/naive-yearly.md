@@ -1,8 +1,9 @@
 ![Lunch from Naive Yearly 2024](/images/naive-yearly.webp)
+Photograph by [Ana Šantl Andersen](https://iamnotana.com)
 
 [Naiveyearly.com](https://naiveyearly.com) is a traveling gathering for the web.
 
-We gather people who expand what the web is and can be. Artists, designers, educators, developers, writers and organizers who avoid nostalgia and technological utopias but use the internet and the open protocols to invite us to see the world anew in the present tense. As such, it is a day of the art of living.
+It is an extension of Naive Weekly where we gather people who expand what the web is and can be. Artists, designers, educators, developers, writers and organizers who avoid nostalgia and technological utopias but use the internet and the open protocols to invite us to see the world anew in the present tense. As such, it is a day of the art of living.
 
 My wish is to foster an atmosphere that steers us like a gentle river, away from abstraction and into the wild sea with our pockets full of sunflower seeds, the flower cursed to follow the sun with their heads because the nymph Clytie fell in love with Apollo.
 
