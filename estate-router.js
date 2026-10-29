@@ -134,6 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mobile()) main.scrollIntoView({behavior: 'auto', block: 'start'});
     });
   });
+  // The site title returns to the homepage without reloading on desktop.
+  // Mobile keeps normal navigation and its fixed-window behavior.
+  document.querySelector('.left-panel > p > a[href="/"]')?.addEventListener('click', event => {
+    if (mobile() || event.defaultPrevented || event.button !== 0 ||
+        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (location.pathname !== '/') history.pushState({estate:null}, '', '/');
+    render(null);
+    main.scrollTop = 0;
+  });
   window.addEventListener('popstate', () => {
     const match = location.pathname.match(/^\/estates\/([^/]+)\/?$/);
     render(match ? match[1] : (aboutMap.has(location.pathname.split('/')[1]) ? location.pathname.split('/')[1] : null));
