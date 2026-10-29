@@ -587,3 +587,58 @@ a[href*="melonking.net/free/software/flood"] {
    Keep the text (and its links) above the iframe in the hit-testing order. */
 .home-intro { position:relative; z-index:1; }
 main:has(.home-intro) > p[align="left"] { position:relative; z-index:0; }
+
+/* Reverse the announcements' direction: right-to-left instead of left-to-right. */
+@keyframes news-flow { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+/* Mobile: framed buttons, independently scrollable estate/about windows, and
+   a centered scaled Chia House. Desktop layout remains untouched. */
+.mobile-about-actions { display:none; }
+@media (max-width:768px) {
+  .news-bar { overflow:hidden; }
+  .news-track { animation:news-flow 38s linear infinite; }
+  .container { border:2px solid #ccc; border-top:0; }
+  .mobile-estates-toggle, .mobile-panel-toggle, .mobile-about-actions a {
+    border:2px solid #ccc;
+    box-sizing:border-box;
+    text-decoration:none;
+  }
+  .mobile-about-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0 auto 8px; }
+  .mobile-about-actions a { padding:10px 15px; color:var(--text-color); font:inherit; }
+  #estate-navigation { border:2px solid #ccc; }
+  .right-panel .sidebar-window { border:2px solid #ccc; }
+  .sidebar-controls { display:none; }
+  /* Direct page links still work; the destination is presented as a window. */
+  body[data-estate-page] main, body[data-about-page] main {
+    position:fixed;
+    z-index:1003;
+    inset:65px 12px max(16px, env(safe-area-inset-bottom));
+    width:auto;
+    height:auto;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    border:2px solid #ccc;
+    background:var(--bg-color);
+    padding:16px 20px 24px;
+    box-shadow:5px 5px 0 var(--text-color);
+  }
+  body[data-estate-page], body[data-about-page] { overflow:hidden; }
+  body[data-estate-page] .mobile-back-link, body[data-about-page] .mobile-back-link {
+    display:block;
+    float:right;
+    margin:0 0 12px 12px;
+    color:var(--text-color);
+  }
+  body[data-estate-page] .estate-page, body[data-about-page] .estate-page { clear:both; }
+  main:has(.home-intro) > p[align="left"] { position:relative; width:100%; height:520px; overflow:hidden; }
+  main:has(.home-intro) #ChiaHouse {
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%) scale(.4);
+    transform-origin:top center;
+  }
+}
+@media (max-width:768px) and (prefers-reduced-motion:reduce) {
+  .news-track { animation:none; }
+  .news-bar { overflow-x:auto; }
+}
