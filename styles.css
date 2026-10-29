@@ -341,4 +341,5 @@ main {
 @media (max-width:768px) { .calendar-section-title { font-size:14px; margin-top:26px; } }
 
 /* Editorial photograph on the Owner page. */
-.owner-photo { display:block; width:100%; height:auto; margin:0 0 20px; }
+.owner-photo { display:block; width:100%; height:auto; margin:0; }
+.photo-credit { font-size:0.85em; }
