@@ -85,6 +85,8 @@ class SiteTests(unittest.TestCase):
         calendar = (ROOT / "content/calendar.md").read_text(encoding="utf-8")
         rendered = build_pages.render_calendar(calendar)
         self.assertEqual(rendered.count('class="calendar-entry"'), 3)
+        self.assertNotIn(r"\n", rendered)
+        self.assertIn("\n<div", rendered)
         self.assertIn("Transmediale", rendered)
         self.assertIn("Parameter", rendered)
         self.assertIn("Naive Yearly", rendered)

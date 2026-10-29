@@ -44,7 +44,7 @@ def render_calendar(value):
                       '</p><p class="calendar-event">' + render_links(html.escape(event)) +
                       '</p><p class="calendar-role">' + render_links(html.escape(role)) +
                       '</p></div>')
-    return "\\n".join(events)
+    return "\n".join(events)
 
 
 def plain_description(value):
