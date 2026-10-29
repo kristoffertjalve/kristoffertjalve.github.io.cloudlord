@@ -582,3 +582,8 @@ a[href*="melonking.net/free/software/flood"] {
   .messages-window > .sidebar-window-heading .messages-rss { font-size:14px; }
   .messages-window > .sidebar-window-heading .mobile-panel-close { margin-left:0; }
 }
+
+/* The negatively offset Chia House iframe overlaps the introduction's box.
+   Keep the text (and its links) above the iframe in the hit-testing order. */
+.home-intro { position:relative; z-index:1; }
+main:has(.home-intro) > p[align="left"] { position:relative; z-index:0; }
