@@ -1,9 +1,3 @@
-The partners are the keystones of Cloudlord Management. They have my phone number, and I keep them in my prayers. They receive the seasonal investor report, and I bring them with me in thoughts and conversations wherever I go. There is no single path to becoming a partner, but it always starts with a conversation.
-
-
-
-
-
                     01 - [Ana Šantl](http://iamnotana.com/)
                     02 - [Emily Adel](https://emilysomething.com/)
                     03 - [Josh Sowin](https://sowin.io/)
