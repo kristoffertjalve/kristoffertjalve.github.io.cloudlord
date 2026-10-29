@@ -305,8 +305,8 @@ main {
 
 /* Two independently scrollable windows in the desktop right column. */
 @media (min-width:769px) {
-  .right-panel { display:flex; flex-direction:column; overflow:hidden; min-height:0; }
-  .sidebar-window { min-height:0; overflow-y:auto; scrollbar-width:thin; }
+  .right-panel { display:flex; flex-direction:column; overflow:hidden; min-height:0; padding:0; }
+  .sidebar-window { min-height:0; overflow-y:auto; scrollbar-width:thin; padding-left:1em; padding-right:1em; }
   .messages-window { flex:1 1 60%; padding-bottom:12px; }
   .calendar-window { flex:1 1 40%; border-top:2px double var(--border-color); padding-top:12px; }
   .sidebar-window > .sidebar-title { margin-top:0; }
