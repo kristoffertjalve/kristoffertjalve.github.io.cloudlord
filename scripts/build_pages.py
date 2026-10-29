@@ -119,7 +119,7 @@ def build():
         canonical = BASE + (f"/estates/{slug}/" if kind == "estates" else f"/{slug}/" if kind else "/")
         description = entry.get("description") or plain_description(markdown) if entry else HOME_DESCRIPTION
         if entry:
-            main = '<main><article class="main-text estate-page"><a class="mobile-back-link" href="#domains">↑ Back to domains</a><h1>' + html.escape(heading) + '</h1><div>' + render_markdown(markdown) + '</div></article></main>'
+            main = '<main><article class="main-text estate-page"><a class="mobile-back-link" href="/">Close ×</a><h1>' + html.escape(heading) + '</h1><div>' + render_markdown(markdown) + '</div></article></main>'
             body_attr = f' data-{"estate" if kind == "estates" else "about"}-page="{slug}"'
         else:
             intro = render_markdown((ROOT / "content/home.md").read_text(encoding="utf-8"))
