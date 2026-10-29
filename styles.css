@@ -900,3 +900,64 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
   .left-panel > .photos-window .mobile-panel-close { display:block; }
   .right-panel > iframe[title="Internet Phone Book dial-a-site badge"] { display:none; }
 }
+
+/* Desktop: About immediately beneath the site title, then an Estates window
+   that meets the Photos window along a shared double-line border. */
+@media (min-width:769px) {
+  .left-panel > p { margin-bottom:7px; }
+  #estate-navigation {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-rows:auto minmax(0,1fr);
+    column-gap:5px;
+    row-gap:0;
+    flex:1 1 auto;
+    min-height:0;
+    margin:0 -1em;
+    align-items:center;
+  }
+  #estate-navigation > .nav-about {
+    grid-column:1;
+    grid-row:1;
+    min-width:0;
+    padding:0 0 9px 1em;
+  }
+  #estate-navigation > .nav-about > .sidebar-title { display:none; }
+  #estate-navigation > .nav-about > ul {
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:2px 9px;
+    margin:0;
+    font-size:12px;
+  }
+  #estate-navigation > .sidebar-controls {
+    grid-column:2;
+    grid-row:1;
+    margin:0;
+    padding:0 1em 9px 0;
+    gap:5px;
+  }
+  #estate-navigation > .nav-estates {
+    grid-column:1 / -1;
+    grid-row:2;
+    align-self:stretch;
+    min-height:0;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    border-top:2px double #ccc;
+    padding:12px 1em 10px;
+  }
+  #estate-navigation > .nav-estates > .sidebar-title { margin:0 0 12px; }
+  #estate-navigation > .nav-estates > ul { margin:0; }
+  .left-panel > .photos-window {
+    flex:1 1 0;
+    min-height:0;
+    border-top:2px double #ccc;
+  }
+}
+@media (max-width:768px) {
+  #estate-navigation > .nav-about { display:none; }
+  #estate-navigation > .nav-estates > .sidebar-title { margin-top:0; }
+}
