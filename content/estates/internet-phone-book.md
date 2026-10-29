@@ -1,3 +1,6 @@
+![The Internet Phone Book at Adad Books in Athens, Greece](/images/internet-phone-book.webp)
+Photograph by [Ana Šantl Andersen](https://iamnotana.com)
+
 [Internetphonebook.net](https://internetphonebook.net) is a printed publication for exploring the vast poetic web.
 
 It brings together hundreds of personal websites alongside essays and observations about the web as a medium for creative expression. At its heart, the Internet Phone Book is about connecting people. Each website is listed with its own telephone number, which readers can dial using [Dial-a-Site](https://internetphonebook.net/dial/) to visit the site and meet the person behind it. The book is a low-tech invitation to discover the web through its inhabitants.
