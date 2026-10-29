@@ -335,3 +335,7 @@ main {
   .right-panel .calendar-entry { margin-bottom:24px; }
   body.mobile-panel-open { overflow:hidden; }
 }
+
+/* Quiet division between upcoming and past appearances. */
+.calendar-section-title { font:inherit; font-size:11px; font-weight:normal; text-decoration:underline; margin:22px 0 14px; }
+@media (max-width:768px) { .calendar-section-title { font-size:14px; margin-top:26px; } }
