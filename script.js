@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Fruitfly cursor
+    // Fruitfly cursor (opt-in; standard pointer on first load).
+    const cursorToggle = document.getElementById('cursor-mode-toggle');
+    const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let flyEnabled = false;
+    function setFlyEnabled(enabled) {
+        flyEnabled = enabled && finePointer.matches && !reducedMotion.matches;
+        document.body.classList.toggle('fruitfly-enabled', flyEnabled);
+        cursorToggle?.setAttribute('aria-pressed', String(flyEnabled));
+        cursorToggle?.setAttribute('aria-label', flyEnabled ? 'Use classic cursor' : 'Enable fruit fly cursor');
+        cursorToggle?.classList.toggle('is-active', flyEnabled);
+        if (!flyEnabled) fruitfly.style.visibility = 'hidden';
+        else if (flyFrame === null && !document.hidden) flyFrame = requestAnimationFrame(animateFruitfly);
+    }
     const fruitfly = document.createElement('div');
     fruitfly.id = 'fruitfly-cursor';
 
@@ -23,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.elementFromPoint(mouseX, mouseY);
         const interactive = target?.closest('a, button, [role="button"], input, select, textarea, summary');
         const leak = target?.closest('[id*="flood"], [class*="flood"], [id*="leak"], [class*="leak"]');
-        fruitfly.style.visibility = interactive || leak ? 'hidden' : 'visible';
+        fruitfly.style.visibility = !flyEnabled || interactive || leak ? 'hidden' : 'visible';
     });
 
     let flyFrame = null;
@@ -36,17 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
         fruitfly.style.transform =
             `translate(${flyX - 16}px, ${flyY - 16}px)`;
 
-        if (!document.hidden) flyFrame = requestAnimationFrame(animateFruitfly);
+        if (!document.hidden && flyEnabled) flyFrame = requestAnimationFrame(animateFruitfly);
     }
 
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        flyFrame = requestAnimationFrame(animateFruitfly);
-    } else {
-        fruitfly.hidden = true;
-    }
+    fruitfly.style.visibility = 'hidden';
+    cursorToggle?.addEventListener('click', () => setFlyEnabled(!flyEnabled));
     
     document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && !fruitfly.hidden && flyFrame === null) flyFrame = requestAnimationFrame(animateFruitfly);
+        if (!document.hidden && flyEnabled && flyFrame === null) flyFrame = requestAnimationFrame(animateFruitfly);
     });
 
     // Navigation and mobile page rendering are handled exclusively by estate-router.js.

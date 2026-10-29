@@ -522,3 +522,40 @@ main {
     line-height:1.5;
   }
 }
+
+/* Quiet sidebar controls, placed after Contact and before the phone book. */
+.sidebar-controls { display:flex; align-items:center; gap:14px; margin-top:22px; }
+.sidebar-controls button { position:static; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; color:var(--text-color); padding:0; cursor:pointer; }
+.sidebar-controls .dark-mode-toggle { font-size:20px; line-height:1; }
+.cursor-mode-toggle { width:32px; height:32px; font:24px/1 monospace; }
+.cursor-mode-toggle img { width:30px; height:30px; object-fit:contain; }
+.cursor-mode-toggle.is-active img { display:none; }
+.cursor-mode-toggle.is-active::after { content:'↖'; }
+.sidebar-controls button:focus-visible { outline:2px solid var(--text-color); outline-offset:3px; }
+@media (max-width:768px) { .sidebar-controls { justify-content:center; margin-top:14px; } }
+
+/* The regular OS pointer is the default; the fly is explicitly opt-in. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  html, body, body * { cursor:auto !important; }
+  a, button, [role="button"], a *, button * { cursor:pointer !important; }
+  body.fruitfly-enabled, body.fruitfly-enabled * { cursor:none !important; }
+  body.fruitfly-enabled a, body.fruitfly-enabled button,
+  body.fruitfly-enabled a *, body.fruitfly-enabled button * { cursor:pointer !important; }
+  body.fruitfly-enabled [id*="flood"], body.fruitfly-enabled [class*="flood"],
+  body.fruitfly-enabled [id*="leak"], body.fruitfly-enabled [class*="leak"],
+  body.fruitfly-enabled [id*="flood"] *, body.fruitfly-enabled [class*="flood"] *,
+  body.fruitfly-enabled [id*="leak"] *, body.fruitfly-enabled [class*="leak"] * { cursor:revert !important; }
+}
+
+/* Align the first message with the first calendar event. */
+@media (min-width:769px) {
+  .messages-window > .sidebar-window-heading { margin-bottom:0; }
+  #message-board > .message-container:first-child { margin-top:0; }
+  #message-board > .message-container:first-child > .message { margin-top:0; }
+}
+
+/* Keep the Leaky Ring bucket/link on the left, away from the photos. */
+a[href*="melonking.net/free/software/flood"] {
+  left:8px !important;
+  right:auto !important;
+}

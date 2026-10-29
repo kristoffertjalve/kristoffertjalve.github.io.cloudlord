@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{TITLE}}</title>
-    <link rel="stylesheet" href="/styles.css?v=sticky-sidebar-headings-20261029">
+    <link rel="stylesheet" href="/styles.css?v=sidebar-controls-20261029">
     
     <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script defer src="/script.js?v=mobile-messages-20261028"></script>
+    <script defer src="/script.js?v=cursor-toggle-20261029"></script>
     <script defer src="/field-photos.js?v=20261029"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="47956f49-3450-4744-95fa-f135a8890f68"></script>
     <script defer src="/estate-router.js?v=mobile-panels-20261028"></script>
@@ -38,9 +38,10 @@
             <button type="button" id="mobile-estates-close" class="mobile-estates-close" aria-label="Close estates">Close ×</button>
             {{NAVIGATION}}
             </nav>
+            <div class="sidebar-controls"><button type="button" id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle color theme">🟢</button><button type="button" id="cursor-mode-toggle" class="cursor-mode-toggle" aria-label="Enable fruit fly cursor" aria-pressed="false"><img src="/cursors/flying.gif" alt="Fruit fly"></button></div>
             <br><br><br>
             <iframe title="Internet Phone Book dial-a-site badge" loading="lazy" src="https://internetphonebook.net/badges/dial-a-site-badge.html?number=585&size=small" width="228" height="54" frameborder="0" style="border: 1px solid #000;"></iframe>
-            <button id="dark-mode-toggle" class="dark-mode-toggle">🟢 </button>
+            
         </aside>
         {{MAIN}}
 
@@ -63,6 +64,6 @@
             </section>
         </aside>
     </div>
-     <link href="https://melonking.net/styles/flood.css" rel="stylesheet" type="text/css" media="all" /><script defer src="https://melonking.net/scripts/flood.js"></script>
+     <link href="https://melonking.net/styles/flood.css" rel="stylesheet" type="text/css" media="all" /><script defer src="https://melonking.net/scripts/flood.js"></script><script defer src="/leaky-ring.js?v=20261029"></script>
 </body>
 </html>

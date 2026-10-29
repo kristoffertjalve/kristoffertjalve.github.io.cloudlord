@@ -18,7 +18,7 @@ def render_links(value):
         label, url = m.groups()
         if not re.match(r"^(https?://|mailto:|/)", url, re.I):
             url = "https://" + url
-        return '<a href="' + html.escape(url, quote=True) + '" target="_blank" rel="noopener noreferrer">' + html.escape(label) + "</a>"
+        return '<a href="' + html.escape(url, quote=True) + ('">' if url.startswith("/") else '" target="_blank" rel="noopener noreferrer">') + html.escape(label) + "</a>"
     return LINK.sub(replace, value)
 
 
@@ -101,7 +101,7 @@ def build():
     calendar_html = render_calendar((ROOT / "content/calendar.md").read_text(encoding="utf-8"))
     nav = []
     for kind in ("estates", "about"):
-        nav.append('<p class="sidebar-title">' + ("Domains" if kind == "estates" else "About") + '</p><ul>')
+        nav.append('<p class="sidebar-title">' + ("Estates" if kind == "estates" else "About") + '</p><ul>')
         for entry_kind, entry, markdown in entries:
             if entry_kind != kind:
                 continue
