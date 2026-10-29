@@ -84,7 +84,7 @@ class SiteTests(unittest.TestCase):
     def test_calendar_renders_all_entries_including_old_events(self):
         calendar = (ROOT / "content/calendar.md").read_text(encoding="utf-8")
         rendered = build_pages.render_calendar(calendar)
-        self.assertEqual(rendered.count('class="calendar-entry"'), 8)
+        self.assertEqual(rendered.count('class="calendar-entry"'), len([block for block in calendar.strip().split("\n\n") if block.strip() and block.strip() != "## Past"]))
         self.assertNotIn(r"\n", rendered)
         self.assertIn("\n<div", rendered)
         self.assertIn("Transmediale", rendered)
