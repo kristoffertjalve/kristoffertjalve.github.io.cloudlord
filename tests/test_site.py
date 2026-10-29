@@ -21,10 +21,13 @@ class PageParser(HTMLParser):
         self.mains = 0
         self.current_link = False
         self.nav_links = []
+        self.in_estate_navigation = False
         self.back_links = 0
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == "nav" and attrs.get("id") == "estate-navigation":
+            self.in_estate_navigation = True
         if tag == "title":
             self.titles += 1
         if tag == "main":
@@ -37,8 +40,13 @@ class PageParser(HTMLParser):
             self.links.append(attrs.get("href"))
             if attrs.get("href") == "#domains":
                 self.back_links += 1
-            if attrs.get("href", "").startswith("/estates/") or attrs.get("href") in ("/owner/", "/partners/", "/press/", "/contact/"):
+            if self.in_estate_navigation and (attrs.get("href", "").startswith("/estates/") or attrs.get("href") in ("/owner/", "/partners/", "/press/", "/contact/")):
                 self.nav_links.append(attrs)
+
+
+    def handle_endtag(self, tag):
+        if tag == "nav":
+            self.in_estate_navigation = False
 
 
 class SiteTests(unittest.TestCase):
