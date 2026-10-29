@@ -93,7 +93,7 @@ def build():
         line = line.strip()
         if not line or line.startswith("#"):
             continue
-        if not re.fullmatch(r"\\[[^\\]]+\\]\\(https?://[^)]+\\)", line):
+        if not re.fullmatch(r"\[[^\]]+\]\(https?://[^)]+\)", line):
             raise ValueError("News bar entries must be one Markdown link per line")
         news_items.append('<span class="news-item">' + render_links(html.escape(line, quote=False)) + '</span>')
     news_group = '<span class="news-group">' + "".join(news_items) + '</span>'
