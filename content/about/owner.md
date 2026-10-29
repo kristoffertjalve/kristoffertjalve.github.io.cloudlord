@@ -3,3 +3,7 @@ Kristoffer Tjalve is an independent organizer and curator, and the owner-operato
 He is behind the Internet Phone Book, a printed directory for exploring the personal web; Tiny Awards, an annual celebration of small and handmade websites; Naive Weekly, an ongoing publication documenting people, places, and projects across the poetic web; and Naive Yearly, a gathering for practitioners expanding what the web is and can be.
 
 Across websites, awards, gatherings, and printed publications, his practice is less concerned with defining what the web should be than with creating conditions for new possibilities to emerge.
+
+##Connect##
+
+[Are.na](https://www.are.na/kristoffer-tjalve) - [Instagram](https://www.instagram.com/kristoffer.tjalve/) - [LinkedIn](https://www.linkedin.com/in/kristoffertjalve/) - [Substack](https://kristoffer.substack.com/)
