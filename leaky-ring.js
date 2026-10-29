@@ -1,20 +1,39 @@
-/* Configure the externally hosted Leaky Ring without replacing its script. */
+/* The ring script injects its own UI after loading.
+   Keep the water and bucket; hide only its status sentence. */
 (function () {
-  // MelonLand documents disableMessages for hiding the leak-status text.
-  window.disableMessages = true;
-  if (window.flood) {
-    window.flood.disableMessages = true;
-  }
+  const statusText = /(?:this page has a harmless leak|how big (?:a|the) leak|(?:tiny|small|medium|large|huge) leak)/i;
 
-  // The bucket is the link to the ring's information page. Move it left
-  // even if the upstream script assigns an inline right position.
-  function positionBucket() {
-    document.querySelectorAll('a[href*="melonking.net/free/software/flood"]').forEach(link => {
-      link.style.setProperty('left', '8px', 'important');
-      link.style.setProperty('right', 'auto', 'important');
+  function customizeRing() {
+    // The third-party widget can create or replace its DOM at any time.
+    document.querySelectorAll('body *').forEach(el => {
+      if (el.closest('.container, .news-bar, script, style')) return;
+      if (el.children.length === 0 && statusText.test(el.textContent || '')) {
+        el.style.setProperty('display', 'none', 'important');
+      }
+    });
+
+    // Locate the actual bucket artwork, not the info text or an unrelated link.
+    document.querySelectorAll('img[src*="bucket"], [id*="bucket"], [class*="bucket"]').forEach(el => {
+      if (el.closest('.container')) return;
+      let widget = el;
+      // Move the positioned container (rather than just the image inside it).
+      while (widget.parentElement && widget.parentElement !== document.body &&
+             getComputedStyle(widget).position !== 'fixed') {
+        widget = widget.parentElement;
+      }
+      if (widget === document.body) return;
+      widget.style.setProperty('right', 'auto', 'important');
+      widget.style.setProperty('left', '8px', 'important');
     });
   }
-  positionBucket();
-  const observer = new MutationObserver(positionBucket);
+
+  // Wait for the external script, then catch later ring updates.
+  let scheduled = false;
+  const observer = new MutationObserver(() => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => { scheduled = false; customizeRing(); });
+  });
   observer.observe(document.body, {childList:true, subtree:true});
+  customizeRing();
 })();
