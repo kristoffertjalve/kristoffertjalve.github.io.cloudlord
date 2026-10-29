@@ -455,3 +455,40 @@ main {
   .field-photo-link { min-height:0; }
   .field-photo-caption { font-size:14px; }
 }
+
+/* Equal thirds in the desktop sidebar; the photograph fills its whole window. */
+@media (min-width:769px) {
+  .right-panel > .sidebar-window {
+    flex:1 1 0;
+    min-height:0;
+  }
+  .right-panel .photos-window {
+    padding:0;
+  }
+  .photos-window .field-photo-link {
+    height:100%;
+  }
+}
+/* Match Calendar and Messages typography and use an opaque site-background highlight. */
+.field-photo-caption {
+  color:var(--text-color);
+  font-family:'Inconsolata',monospace;
+  font-size:11px;
+  font-style:normal;
+  font-weight:normal;
+  line-height:1.35;
+}
+.field-photo-caption:not(:empty) {
+  background:var(--bg-color);
+}
+@media (max-width:768px) {
+  .photos-window .photos-close {
+    position:absolute;
+    z-index:1;
+    top:16px;
+    right:20px;
+    background:var(--bg-color);
+    padding:4px;
+  }
+  .right-panel .field-photo-caption { font-size:14px; line-height:1.5; }
+}
