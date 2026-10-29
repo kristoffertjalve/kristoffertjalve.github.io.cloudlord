@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const panelWindows = [...document.querySelectorAll('.right-panel .sidebar-window')];
   let previousFocus = null;
   function setPanel(name) {
-    const open = name === 'messages' || name === 'calendar';
+    const open = name === 'messages' || name === 'calendar' || name === 'photos';
     if (open && !document.body.dataset.mobilePanel) previousFocus = document.activeElement;
     if (open) setMenu(false);
     document.body.classList.toggle('mobile-panel-open', open);
