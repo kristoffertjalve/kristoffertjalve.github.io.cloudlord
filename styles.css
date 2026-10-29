@@ -492,3 +492,33 @@ main {
   }
   .right-panel .field-photo-caption { font-size:14px; line-height:1.5; }
 }
+
+/* Window labels match their content and remain visible during independent scrolling. */
+.messages-window > .sidebar-window-heading,
+.calendar-window > .sidebar-window-heading {
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:var(--sidebar-bg);
+}
+.messages-window > .sidebar-window-heading .sidebar-title,
+.calendar-window > .sidebar-window-heading .sidebar-title {
+  font-family:'Inconsolata',monospace;
+  font-size:11px;
+  font-weight:normal;
+  line-height:1.35;
+}
+@media (min-width:769px) {
+  .messages-window > .sidebar-window-heading,
+  .calendar-window > .sidebar-window-heading {
+    padding-top:0;
+    padding-bottom:6px;
+  }
+}
+@media (max-width:768px) {
+  .messages-window > .sidebar-window-heading .sidebar-title,
+  .calendar-window > .sidebar-window-heading .sidebar-title {
+    font-size:14px;
+    line-height:1.5;
+  }
+}
