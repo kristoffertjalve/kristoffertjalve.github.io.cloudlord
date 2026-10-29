@@ -155,8 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     if (location.pathname !== '/') history.pushState({estate:null}, '', '/');
-    render(null);
-    main.scrollTop = 0;
+    render(null).then(() => { main.scrollTop = 0; });
   });
   window.addEventListener('popstate', () => {
     const match = location.pathname.match(/^\/estates\/([^/]+)\/?$/);
