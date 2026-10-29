@@ -6,6 +6,7 @@ on:
       - 'content/**'
       - 'templates/page.html'
       - 'scripts/build_pages.py'
+      - 'tests/**'
       - '.github/workflows/sync-pages.yml'
   workflow_dispatch:
 
