@@ -101,7 +101,7 @@ def build():
     calendar_html = render_calendar((ROOT / "content/calendar.md").read_text(encoding="utf-8"))
     nav = []
     for kind in ("estates", "about"):
-        nav.append('<p class="sidebar-title">' + ("Estates" if kind == "estates" else "About") + '</p><ul>')
+        nav.append('<div class="nav-section nav-' + kind + '"><p class="sidebar-title">' + ("Estates" if kind == "estates" else "About") + '</p><ul>')
         for entry_kind, entry, markdown in entries:
             if entry_kind != kind:
                 continue
@@ -110,7 +110,7 @@ def build():
             url = f"/estates/{slug}/" if kind == "estates" else f"/{slug}/"
             data_attr = "data-estate" if kind == "estates" else "data-about"
             nav.append('<li data-meta="' + html.escape(json.dumps(metadata[url], ensure_ascii=False), quote=True) + '" ' + data_attr + '="' + slug + '" data-html="' + html.escape(render_markdown(markdown), quote=True) + '"><a href="' + url + '">' + html.escape(title) + '</a></li>')
-        nav.append("</ul>")
+        nav.append("</ul></div>")
     nav_html = "\n".join(nav)
     for path, kind, entry, markdown in pages:
         slug = entry["slug"] if entry else None
