@@ -148,6 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mobile()) main.scrollIntoView({behavior: 'auto', block: 'start'});
     });
   });
+  // Header links share the same smooth desktop routing as sidebar About links.
+  document.querySelectorAll('.desktop-about-links a[href]').forEach(anchor => {
+    anchor.addEventListener('click', event => {
+      if (mobile() || event.defaultPrevented || event.button !== 0 ||
+          event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const target = aboutLinks.find(item => item.querySelector('a')?.getAttribute('href') === anchor.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      target.querySelector('a').click();
+    });
+  });
   // The site title returns to the homepage without reloading on desktop.
   // Mobile keeps normal navigation and its fixed-window behavior.
   document.querySelector('.left-panel > p > a[href="/"]')?.addEventListener('click', event => {
