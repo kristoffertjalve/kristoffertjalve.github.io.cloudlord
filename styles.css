@@ -1075,3 +1075,31 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     border-bottom:2px double #ccc;
   }
 }
+
+/* Compact mobile navigation: only Estates use full-width bars. */
+@media (max-width:768px) {
+  .left-panel > .mobile-about-actions {
+    border:0;
+    padding:8px 12px;
+  }
+  #estate-navigation > ul:first-of-type > li > a {
+    padding:7px 12px;
+  }
+  .left-panel > .mobile-window-actions {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
+    padding:8px 12px;
+  }
+  .mobile-window-actions .mobile-panel-toggle,
+  .mobile-window-actions .mobile-panel-toggle:last-child {
+    display:inline;
+    width:auto;
+    padding:0;
+    border:0;
+    background:transparent;
+    line-height:1.5;
+  }
+}
