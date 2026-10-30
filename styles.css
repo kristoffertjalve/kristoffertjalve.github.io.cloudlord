@@ -1103,3 +1103,57 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     line-height:1.5;
   }
 }
+
+/* Mobile: three distinct framed navigation groups, matching the desktop Estates panel. */
+@media (max-width:768px) {
+  .left-panel > .mobile-about-actions {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:center;
+    align-items:center;
+    gap:clamp(10px, 4vw, 22px);
+    border:2px double #ccc;
+    padding:10px 8px;
+    margin:0 0 10px;
+  }
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation {
+    display:flex;
+    flex-direction:column;
+    border:2px double #ccc;
+    padding:12px 0 4px;
+    margin:0 0 10px;
+  }
+  #estate-navigation > .sidebar-title:first-of-type {
+    display:block;
+    margin:0 0 8px;
+    padding:0 12px;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  #estate-navigation > ul:first-of-type > li > a {
+    padding:7px 12px;
+    border-bottom:0;
+  }
+  .left-panel > .mobile-window-actions {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:space-evenly;
+    align-items:center;
+    gap:4px;
+    border:2px double #ccc;
+    padding:10px 6px;
+    margin:0;
+  }
+  .mobile-window-actions .mobile-panel-toggle,
+  .mobile-window-actions .mobile-panel-toggle:last-child {
+    flex:0 1 auto;
+    white-space:nowrap;
+    width:auto;
+    padding:0;
+    border:0;
+    background:transparent;
+  }
+}
