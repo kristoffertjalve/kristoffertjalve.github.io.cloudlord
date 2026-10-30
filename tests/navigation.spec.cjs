@@ -29,7 +29,10 @@ test('mobile estate, messages and calendar windows', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   await page.goto(base + '/');
-  await expect(page.locator('#estate-navigation')).toBeHidden();
+  await expect(page.locator('#mobile-estates-toggle')).toBeHidden();
+  await expect(page.locator('#estate-navigation')).toBeVisible();
+  await expect(page.locator('.mobile-about-actions a[href="/owner/"]')).toBeVisible();
+  await expect(page.locator('.mobile-window-actions')).toBeVisible();
   await expect(page.locator('#calendar-window')).toBeHidden();
   await page.locator('.mobile-panel-toggle[data-panel="calendar"]').click();
   await expect(page.locator('#calendar-window')).toBeVisible();
@@ -42,8 +45,7 @@ test('mobile estate, messages and calendar windows', async ({ browser }) => {
   await expect(page.locator('#messages-window')).toBeVisible();
   await page.locator('.mobile-panel-close[data-panel="messages"]').click();
   await expect(page.locator('#messages-window')).toBeHidden();
-  await page.locator('#mobile-estates-toggle').click();
-  await expect(page.locator('#estate-navigation')).toBeVisible();
+  await expect(page.locator('#estate-navigation li[data-estate="tiny-awards"] a')).toBeVisible();
   await page.locator('li[data-estate="tiny-awards"] a').click();
   await expect(page).toHaveURL(base + '/estates/tiny-awards/');
   await expect(page.locator('main h1')).toHaveText('Tinyawards.net');
