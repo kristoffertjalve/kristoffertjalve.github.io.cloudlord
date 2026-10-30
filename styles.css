@@ -1157,3 +1157,23 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     background:transparent;
   }
 }
+
+/* Seamless mobile navigation boxes and desktop-density estate links. */
+@media (max-width:768px) {
+  .left-panel > .mobile-about-actions,
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation,
+  .left-panel > .mobile-window-actions {
+    margin-top:0;
+    margin-bottom:0;
+  }
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation,
+  .left-panel > .mobile-window-actions {
+    border-top:0;
+  }
+  #estate-navigation > ul:first-of-type > li > a {
+    padding:0 12px;
+    line-height:1.5;
+  }
+}
