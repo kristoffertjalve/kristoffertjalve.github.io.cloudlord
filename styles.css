@@ -900,3 +900,66 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
   .left-panel > .photos-window .mobile-panel-close { display:block; }
   .right-panel > iframe[title="Internet Phone Book dial-a-site badge"] { display:none; }
 }
+
+/* Desktop left column: fixed header, independently scrollable Estates and Photos. */
+.desktop-about-row { display:none; }
+@media (min-width:769px) {
+  .left-panel > pre { flex:none; }
+  .left-panel > p { flex:none; margin-bottom:8px; }
+  .left-panel > .desktop-about-row {
+    display:flex;
+    flex:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+    margin:0 -1em;
+    padding:0 1em 10px;
+    min-width:0;
+  }
+  .desktop-about-links {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:3px 10px;
+    min-width:0;
+    font-size:12px;
+  }
+  .desktop-about-links a { color:var(--text-color); text-decoration:none; }
+  .desktop-about-links a:hover,
+  .desktop-about-links a[aria-current="page"] { text-decoration:underline; }
+  .desktop-about-controls { flex:none; }
+  .desktop-about-controls .sidebar-controls { margin:0; gap:5px; }
+  .desktop-about-controls .dark-mode-toggle { font-size:16px; }
+  .desktop-about-controls .cursor-mode-toggle,
+  .desktop-about-controls .cursor-mode-toggle img { width:23px; height:23px; }
+  .left-panel > #estate-navigation {
+    display:flex;
+    flex:1 1 50%;
+    flex-direction:column;
+    align-items:stretch;
+    min-height:0;
+    overflow:hidden;
+    margin:0 -1em;
+    padding:12px 1em;
+    border-top:2px double #ccc;
+    box-sizing:border-box;
+  }
+  #estate-navigation > .sidebar-title:first-of-type { flex:none; margin:0 0 10px; }
+  #estate-navigation > ul:first-of-type {
+    display:block;
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto;
+    scrollbar-width:thin;
+    margin:0;
+    padding:0 0 8px;
+  }
+  #estate-navigation > .sidebar-title:nth-of-type(2),
+  #estate-navigation > ul:nth-of-type(2) { display:none; }
+  .left-panel > .photos-window {
+    flex:1 1 50%;
+    min-height:0;
+    margin:0 -1em;
+    border-top:2px double #ccc;
+  }
+}
