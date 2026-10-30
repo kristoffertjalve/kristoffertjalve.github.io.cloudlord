@@ -1,3 +1,4 @@
+![Screenshot of the tiny awards website](/images/tiny-awards.webp)
 [Tinyawards.net](https://tinyawards.net/) is an annual celebration of the small, poetic, creative, handmade web.
 
 Founded in 2023, the Tiny Awards recognize personal, non-commercial websites that might otherwise be overlooked by more traditional awards. They celebrate people making things for the web out of curiosity, imagination, and the simple pleasure of making something.
