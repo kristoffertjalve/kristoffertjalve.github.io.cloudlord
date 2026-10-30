@@ -8,7 +8,7 @@ test('estate links, history and About navigation', async ({ page }) => {
   await expect(page).toHaveURL(/\/estates\/tiny-awards\/$/);
   await expect(page.locator('main h1')).toHaveText('Tinyawards.net');
   await expect(page.locator('li[data-estate="tiny-awards"] a')).toHaveAttribute('aria-current', 'page');
-  await page.locator('li[data-about="owner"] a').click();
+  await page.locator('.desktop-about-links a[href="/owner/"]').click();
   await expect(page).toHaveURL(/\/owner\/$/);
   await page.goBack();
   await expect(page).toHaveURL(/\/estates\/tiny-awards\/$/);
@@ -54,6 +54,6 @@ test('dark mode remains functional', async ({ page }) => {
   await page.goto(base + '/');
   await page.locator('#dark-mode-toggle').click();
   await expect(page.locator('body')).toHaveClass(/dark-mode/);
-  await page.locator('li[data-about="contact"] a').click();
+  await page.locator('.desktop-about-links a[href="/contact/"]').click();
   await expect(page.locator('body')).toHaveClass(/dark-mode/);
 });
