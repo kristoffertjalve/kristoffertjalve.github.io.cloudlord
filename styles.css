@@ -1213,3 +1213,32 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     line-height:1.5;
   }
 }
+
+/* Animated rainbow frame exclusively around the Estates navigation. */
+@property --estates-rainbow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes estates-rainbow-rotate {
+  to { --estates-rainbow-angle: 360deg; }
+}
+@media (min-width:769px) {
+  .left-panel > #estate-navigation {
+    border:2px solid transparent;
+    border-image:conic-gradient(from var(--estates-rainbow-angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    animation:estates-rainbow-rotate 5s linear infinite;
+  }
+}
+@media (max-width:768px) {
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation {
+    border:2px solid transparent;
+    border-image:conic-gradient(from var(--estates-rainbow-angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    animation:estates-rainbow-rotate 5s linear infinite;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation { animation:none; }
+}
