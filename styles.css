@@ -1197,3 +1197,19 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     text-align:left;
   }
 }
+
+/* Match bottom mobile navigation link spacing to the Owner / Press / Contact row. */
+@media (max-width:768px) {
+  .left-panel > .mobile-window-actions {
+    justify-content:flex-start;
+    gap:clamp(10px, 4vw, 22px);
+    padding:10px 8px 10px 12px;
+  }
+  .mobile-window-actions .mobile-panel-toggle,
+  .mobile-window-actions .mobile-panel-toggle:last-child {
+    flex:none;
+    font:inherit;
+    font-size:14px;
+    line-height:1.5;
+  }
+}
