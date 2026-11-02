@@ -1262,3 +1262,11 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     margin-bottom:0;
   }
 }
+
+/* Keep the desktop About frame within the sidebar's inner width. */
+@media (min-width:769px) {
+  .left-panel > .desktop-about-row {
+    box-sizing:border-box;
+    width:calc(100% + 2em);
+  }
+}
