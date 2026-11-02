@@ -1242,3 +1242,10 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
   .left-panel > #estate-navigation,
   .mobile-menu-open #estate-navigation { animation:none; }
 }
+
+/* Thin black frame on editorial photographs across estate and owner pages. */
+.owner-photo {
+  box-sizing:border-box;
+  border:1px solid #000;
+  max-width:100%;
+}
