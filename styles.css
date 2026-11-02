@@ -1249,3 +1249,16 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
   border:1px solid #000;
   max-width:100%;
 }
+
+/* Desktop: frame the About links and cursor controls as one group, and tighten castle-to-intro spacing. */
+@media (min-width:769px) {
+  .left-panel > .desktop-about-row {
+    border:2px double #ccc;
+    padding:10px 12px;
+    margin:0 -1em;
+    box-sizing:content-box;
+  }
+  .left-panel > pre {
+    margin-bottom:0;
+  }
+}
