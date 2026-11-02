@@ -1270,3 +1270,14 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     width:calc(100% + 2em);
   }
 }
+
+/* Mobile rainbow frame: include both side borders within the viewport width. */
+@media (max-width:768px) {
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation {
+    box-sizing:border-box;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+  }
+}
