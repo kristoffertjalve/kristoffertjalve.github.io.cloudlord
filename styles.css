@@ -1177,3 +1177,23 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     line-height:1.5;
   }
 }
+
+/* Left-align all three mobile navigation sections. */
+@media (max-width:768px) {
+  .left-panel > .mobile-about-actions,
+  .left-panel > .mobile-window-actions {
+    justify-content:flex-start;
+    text-align:left;
+    padding-left:12px;
+  }
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation {
+    text-align:left;
+  }
+  #estate-navigation > .sidebar-title:first-of-type,
+  #estate-navigation > ul:first-of-type,
+  #estate-navigation > ul:first-of-type > li,
+  #estate-navigation > ul:first-of-type > li > a {
+    text-align:left;
+  }
+}
