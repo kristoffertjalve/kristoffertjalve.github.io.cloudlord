@@ -1281,3 +1281,19 @@ li[data-about="partners"], .mobile-about-actions a[href="/partners/"] { display:
     max-width:100%;
   }
 }
+
+/* Final edge alignment: avoid duplicate sidebar divider; keep rainbow's right stroke in view. */
+@media (min-width:769px) {
+  .left-panel > .desktop-about-row {
+    border-right:0;
+  }
+}
+@media (max-width:768px) {
+  .left-panel > #estate-navigation,
+  .mobile-menu-open #estate-navigation {
+    width:calc(100% - 3px);
+    max-width:calc(100% - 3px);
+    margin-right:3px;
+    align-self:flex-start;
+  }
+}
