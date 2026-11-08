@@ -1,3 +1,4 @@
+![Screenshot of the apossible website](/images/apossible.webp)
 [Apossible.com](https://apossible.com/) is a non-profit research and design initiative investigating how technology might help us become more human, rather than simply more productive.
 
 Together with Andrew Trousdale, Jake Dow-Smith, and Bryan Wolff, I explore what it means to flourish in a world increasingly shaped by the technologies we create. Our work brings psychology, design, and technology into conversation through research, experiments, and prototypes that seek to nurture care, curiosity, and our capacity to live meaningful lives.
